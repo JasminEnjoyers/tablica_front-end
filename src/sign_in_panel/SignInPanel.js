@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, TextField} from "@mui/material";
 import SignInPanelStyle from "../sign_in_panel/SignInPanelStyle";
 import {Link} from "react-router-dom";
+import getApiUrl from "../api/ApiUrl";
 
 export default function SingInPanel(props) {
     const styles = SignInPanelStyle()
@@ -10,10 +11,16 @@ export default function SingInPanel(props) {
 
     function SubmitButtonClicked(event){
         event.preventDefault()
-        props.userSetter(login)
-
-        console.log(login)
-        console.log(password)
+        fetch(getApiUrl()+ "?login=" + login + "&password=" + password, {
+            method: "POST",
+            credentials: "include"
+        }).then(response => {
+                try{
+                    response.json().then(result => props.userSetter(result))
+                }catch (err){
+                    console.log("error",err)
+                }
+            })
     }
 
     return (
