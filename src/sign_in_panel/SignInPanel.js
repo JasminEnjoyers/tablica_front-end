@@ -33,6 +33,7 @@ export default function SingInPanel(props) {
                         value={login}
                         onChange={(event) => setLogin(event.target.value)}
                         fullWidth
+
                         autoComplete='off'
                         InputProps={{
                             classes:{
@@ -58,13 +59,13 @@ export default function SingInPanel(props) {
                             }
                         }}
                     />
-                    <div className={styles.formElement}>
+                    <div className={styles.registerTextBox}>
                         Nie masz konta? <Link to="/register" className={styles.register}>Zarejestruj się!</Link>
                     </div>
                     <Button
                         variant="contained"
                         type="submit"
-                        className={styles.formElement}
+                        className={styles.button}
                     >Zaloguj
                     </Button>
                 </form>

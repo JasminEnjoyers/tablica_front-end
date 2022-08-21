@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import SingInPanel from "../sign_in_panel/SignInPanel";
-import UserPanel from "../user_panel/UserPanel";
+import WallPanel from "../user_panel/WallPanel";
 import {Route, Routes} from "react-router-dom";
 
 function App() {
@@ -10,12 +10,12 @@ function App() {
       return (
           <div className="App">
               {user != null &&
-                  <UserPanel user={user}/>
+                  <WallPanel user={user}/>
               }
               {user == null &&
                   <Routes>
                       <Route path="/" element={ <SingInPanel userSetter={setUser}/> }/>
-                      <Route path="/register" element={ <UserPanel user={"cgyh"}/> }/>
+                      <Route path="/register" element={ <WallPanel user={"cgyh"}/> }/>
                   </Routes>
               }
           </div>
