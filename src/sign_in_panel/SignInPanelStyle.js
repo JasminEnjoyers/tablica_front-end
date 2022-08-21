@@ -1,26 +1,35 @@
 import {makeStyles} from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
+    logInBackground:{
+        display: "flex",
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundImage: "url(/img/backdrop.png)",
+        backgroundSize: "cover"
+    },
+
     positioningBox: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        backgroundColor: "#e1e3eb"
     },
-    loginBox: {
 
+    loginBox: {
         padding: 50,
-        WebkitBoxShadow: "11px 12px 13px 12px rgb(207, 207, 207)",
-        backgroundColor: "white",
-        //border: "3px solid black",
+        WebkitBoxShadow: "18px 18px 30px 15px rgba(207, 207, 207,0.2)",
+        backgroundColor: "rgba(255,255,255,0.2)",
+        backdropFilter: "blur(2px)",
+        backgroundBlendMode: "hue",
         WebkitBorderRadius: "50px"
     },
+
     formElement: {
         margin: 5,
-
     },
+
     TextField:{
         display: "flex",
         flexDirection: "column",
@@ -28,16 +37,20 @@ export default makeStyles((theme) => ({
         justifyContent: "center",
 
     },
+
     registerTextBox:{
-        margin: 5,
+        margin: 10,
     },
+
     register: {
         textDecoration: "none",
         color: "blue",
     },
-    button:{
-        marginTop:25,
+
+    button: {
+        marginTop: 20,
     },
+
     logo:{
         width: 125,
         height: 125,
