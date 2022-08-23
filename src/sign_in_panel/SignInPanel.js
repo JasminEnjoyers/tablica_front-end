@@ -4,6 +4,7 @@ import SignInPanelStyle from "../sign_in_panel/SignInPanelStyle";
 import {Link} from "react-router-dom";
 import getApiUrl from "../api/ApiUrl";
 
+
 export default function SingInPanel(props) {
     const styles = SignInPanelStyle()
     const [login,setLogin] = React.useState("")
@@ -24,6 +25,7 @@ export default function SingInPanel(props) {
     }
 
     return (
+        <div className={styles.logInBackground}>
         <div className={styles.positioningBox}>
             <div className={styles.loginBox}>
                 <img
@@ -57,6 +59,7 @@ export default function SingInPanel(props) {
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                         fullWidth
+                        autoComplete='off'
                         InputProps={{
                             classes:{
                                 root: styles.formElement,
@@ -65,17 +68,19 @@ export default function SingInPanel(props) {
                             }
                         }}
                     />
-                    <div className={styles.formElement}>
+                    <div className={styles.registerTextBox}>
                         Nie masz konta? <Link to="/register" className={styles.register}>Zarejestruj się!</Link>
                     </div>
-                    <Button
-                        variant="contained"
-                        type="submit"
-                        className={styles.formElement}
-                    >Zaloguj
-                    </Button>
+                    <div className={styles.button}>
+                        <Button
+                            variant="contained"
+                            type="submit">
+                        Zaloguj
+                        </Button>
+                    </div>
                 </form>
             </div>
+        </div>
         </div>
     );
 }

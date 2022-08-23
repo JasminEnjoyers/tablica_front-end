@@ -1,9 +1,10 @@
 import React from 'react';
-import SignInPanelStyle from "../sign_in_panel/SignInPanelStyle";
+import WallPanelStyle from "./WallPanelStyle";
 import getApiUrl from "../api/ApiUrl";
 
-export default function UserPanel(props) {
-    const styles = SignInPanelStyle()
+
+export default function WallPanel(props) {
+    const styles = WallPanelStyle()
     const {user} = props
 
     const [posty,setPosty] = React.useState(null)
