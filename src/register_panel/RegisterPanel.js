@@ -6,43 +6,114 @@ import getApiUrl from "../api/ApiUrl";
 
 export default function RegisterPanel(props) {
     const styles = SignInPanelStyle()
-    const [login,setLogin] = React.useState(null)
-    const [password,setPassword] = React.useState(null)
-    const [email,setEmail] = React.useState(null)
-    const [phone,setPhone] = React.useState(null)
-    const [firstName,setFirstName] = React.useState(null)
-    const [lastName,setLastName] = React.useState(null)
+    const [login,setLogin] = React.useState("")
+    const [password,setPassword] = React.useState("")
+    const [email,setEmail] = React.useState("")
+    const [phone,setPhone] = React.useState("")
+    const [firstName,setFirstName] = React.useState("")
+    const [lastName,setLastName] = React.useState("")
+    const [error,setError] = React.useState("")
+    const [showError, setShowError] = React.useState(false)
+    const [loginError, setLoginError] = React.useState(false)
+    const [emailError, setEmailError] = React.useState(false)
+    const [phoneError, setPhoneError] = React.useState(false)
+
+    function ValidateEmail(email){
+        return email.toLowerCase().match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+    }
+    function ValidatePhone(phone){
+        return phone.toLowerCase().match(
+            "[0-9]{9}"
+        );
+    }
 
     function SubmitButtonClicked(event){
-        event.preventDefault()
-        console.log(event)
-        console.log(login.size)
-        if(login?.length === 0) setLogin(null)
-        if(password?.length === 0) setPassword(null)
-        if(email?.length === 0) setEmail(null)
-        if(phone?.length === 0) setPhone(null)
-        if(firstName?.length === 0) setFirstName(null)
-        if(lastName?.length === 0) setLastName(null)
+        event.preventDefault();
 
-        fetch(getApiUrl()+ "register?login=" + login
-            + "&password=" + password
-            + "&email=" + email
-            + "&phone=" + phone
-            + "&firstName=" + firstName
-            + "&lastName=" + lastName, {
-            method: "POST",
-            credentials: "include"
-        }).then(response => {
-            try{
+        var fetchBool = true;
+
+        if(login?.length < 4 || login == null){
+            setError("zbyt krótki login");
+            setShowError(true);
+            fetchBool = false;
+        }
+        if(password?.length < 4 || password == null){
+            setError("zbyt łatwe hasło");
+            setShowError(true);
+            fetchBool = false;
+        }
+        if(!ValidateEmail(email)){
+            setError("błędny adres email");
+            setShowError(true);
+            fetchBool = false;
+        }
+        if(!ValidatePhone(phone)){
+            setError("błędny numer telefonu");
+            setShowError(true);
+            fetchBool = false;
+        }
+        if(firstName?.length < 1 || firstName == null){
+            setError("wprowadz imie");
+            setShowError(true);
+            fetchBool = false;
+        }
+        if(lastName?.length < 1 || lastName == null){
+            setError("wprowadz nazwisko");
+            setShowError(true);
+            fetchBool = false;
+        }
+
+        if(fetchBool) {
+            fetch(getApiUrl() + "user/login/" + login,{
+                method: "GET"
+            }).then(response => {
                 response.json().then(result => {
-                    console.log(result);
-                        if(result.id != null) props.userSetter(result);
+                        setLoginError(Boolean(result))
                     }
                 )
-            }catch (err){
-                console.log("error",err);
-            }
-        })
+            })
+            fetch(getApiUrl() + "user/email/" + email,{
+                method: "GET"
+            }).then(response => {
+                response.json().then(result => {
+                        setEmailError(Boolean(result))
+                    }
+                )
+            })
+            fetch(getApiUrl() + "user/phone/" + phone,{
+                method: "GET"
+            }).then(response => {
+                response.json().then(result => {
+                        setPhoneError(Boolean(result))
+                    }
+                )
+            })
+            console.log("loginError= " + loginError)
+            console.log("emailError= " + emailError)
+            console.log("phoneError= " + phoneError)
+
+            if(!loginError && !emailError && !phoneError)
+            fetch(getApiUrl() + "register?login=" + login
+                + "&password=" + password
+                + "&email=" + email
+                + "&phone=" + phone
+                + "&firstName=" + firstName
+                + "&lastName=" + lastName, {
+                method: "POST",
+                credentials: "include"
+            }).then(response => {
+                try {
+                    response.json().then(result => {
+                            if (result.id != null) props.userSetter(result);
+                        }
+                    )
+                } catch (err) {
+                    console.log("error", err);
+                }
+            })
+        }
     }
 
     return (
@@ -108,7 +179,7 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="phone"
-                        label="numer telefonu"
+                        label="numer telefonu*"
                         variant="outlined"
                         value={phone}
                         onChange={(event) => setPhone(event.target.value)}
@@ -163,6 +234,9 @@ export default function RegisterPanel(props) {
                             }
                         }}
                     />
+                    {showError &&
+                        <div>{error}</div>
+                    }
                     <div className={styles.formElement}>
                         masz konto? <Link to="/" className={styles.register}>Zaloguj się!</Link>
                     </div>
