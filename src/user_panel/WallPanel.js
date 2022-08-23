@@ -1,16 +1,34 @@
 import React from 'react';
 import WallPanelStyle from "./WallPanelStyle";
-import {Button, TextField} from "@mui/material";
-import {Link} from "react-router-dom";
+import getApiUrl from "../api/ApiUrl";
 
 
 export default function WallPanel(props) {
     const styles = WallPanelStyle()
     const {user} = props
 
+    const [posty,setPosty] = React.useState(null)
+
+    function buttonClick(event){
+        fetch(getApiUrl(), {
+            method: "GET",
+        }).then((response) => {
+            response.json().then(r => {
+                r.forEach(console.log);
+            })
+        })
+    }
+
     return (
         <div className={styles.positioningBox}>
-            {user}
+            {user.email}{posty}
+            <button
+                variant="contained"
+                type="submit"
+                onClick={(event) => buttonClick(event)}
+            >
+                click me
+            </button>
         </div>
     );
 }
