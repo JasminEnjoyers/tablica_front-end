@@ -1,25 +1,26 @@
-import logo from '../logo.svg';
 import './App.css';
+import React from 'react';
+import SingInPanel from "../sign_in_panel/SignInPanel";
+import UserPanel from "../user_panel/UserPanel";
+import {Route, Routes} from "react-router-dom";
+import RegisterPanel from "../register_panel/RegisterPanel";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [user,setUser] = React.useState(null)
+
+      return (
+          <div className="App">
+              {user != null &&
+                  <UserPanel user={user}/>
+              }
+              {user == null &&
+                  <Routes>
+                      <Route path="/" element={ <SingInPanel userSetter={setUser}/> }/>
+                      <Route path="/register" element={ <RegisterPanel userSetter={setUser}/> }/>
+                  </Routes>
+              }
+          </div>
+      );
 }
 
 export default App;
