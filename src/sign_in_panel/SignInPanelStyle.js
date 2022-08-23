@@ -7,14 +7,15 @@ export default makeStyles((theme) => ({
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        backgroundColor: "grey"
+        backgroundColor: "grey",
     },
     loginBox: {
         padding: 50,
         WebkitBoxShadow: "0px 0px 15px 5px black",
         backgroundColor: "white",
         border: "3px solid black",
-        WebkitBorderRadius: "50px"
+        WebkitBorderRadius: "50px",
+        maxWidth: 500
     },
     formElement: {
         margin: 5,

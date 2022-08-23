@@ -12,7 +12,7 @@ export default function SingInPanel(props) {
     function SubmitButtonClicked(event){
         event.preventDefault()
         fetch(getApiUrl()+ "?login=" + login + "&password=" + password, {
-            method: "POST",
+            method: "GET",
             credentials: "include"
         }).then(response => {
                 try{
