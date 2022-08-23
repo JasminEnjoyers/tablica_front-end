@@ -23,7 +23,8 @@ export default makeStyles((theme) => ({
         backgroundColor: "rgba(255,255,255,0.2)",
         backdropFilter: "blur(2px)",
         backgroundBlendMode: "hue",
-        WebkitBorderRadius: "50px"
+        WebkitBorderRadius: "50px",
+        maxWidth: 500
     },
 
     formElement: {
