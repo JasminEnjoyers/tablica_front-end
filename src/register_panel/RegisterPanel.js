@@ -1,11 +1,11 @@
 import React from 'react';
 import {Button, TextField} from "@mui/material";
-import SignInPanelStyle from "../sign_in_panel/SignInPanelStyle";
+import RegisterPanelStyle from "../register_panel/RegisterPanelStyle";
 import {Link} from "react-router-dom";
 import getApiUrl from "../api/ApiUrl";
 
 export default function RegisterPanel(props) {
-    const styles = SignInPanelStyle()
+    const styles = RegisterPanelStyle()
     const [login,setLogin] = React.useState("")
     const [password,setPassword] = React.useState("")
     const [email,setEmail] = React.useState("")
@@ -117,12 +117,51 @@ export default function RegisterPanel(props) {
     }
 
     return (
+        <div className={styles.RegisterPanelBackground}>
         <div className={styles.positioningBox}>
             <div className={styles.loginBox}>
                 <form onSubmit={(event) => SubmitButtonClicked(event)}>
                     <TextField
+                        id="firstName"
+                        label="imię*"
+                        variant="outlined"
+                        value={firstName}
+                        onChange={(event) => setFirstName(event.target.value)}
+                        fullWidth
+                        autoComplete='off'
+                        inputProps={{
+                            maxLength: 200,
+                        }}
+                        InputProps={{
+                            classes:{
+                                root: styles.formElement,
+                                disabled: styles.formElement,
+                                notchedOutline: styles.formElement
+                            }
+                        }}
+                    />
+                    <TextField
+                        id="lastName"
+                        label="nazwisko*"
+                        variant="outlined"
+                        value={lastName}
+                        onChange={(event) => setLastName(event.target.value)}
+                        fullWidth
+                        autoComplete='off'
+                        inputProps={{
+                            maxLength: 200,
+                        }}
+                        InputProps={{
+                            classes:{
+                                root: styles.formElement,
+                                disabled: styles.formElement,
+                                notchedOutline: styles.formElement
+                            }
+                        }}
+                    />
+                    <TextField
                         id="login"
-                        label="login*"
+                        label="nazwa użytkownika*"
                         variant="outlined"
                         value={login}
                         onChange={(event) => setLogin(event.target.value)}
@@ -160,7 +199,7 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="email"
-                        label="email*"
+                        label="adres e-mail*"
                         variant="outlined"
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
@@ -196,58 +235,23 @@ export default function RegisterPanel(props) {
                             },
                         }}
                     />
-                    <TextField
-                        id="firstName"
-                        label="imie*"
-                        variant="outlined"
-                        value={firstName}
-                        onChange={(event) => setFirstName(event.target.value)}
-                        fullWidth
-                        autoComplete='off'
-                        inputProps={{
-                            maxLength: 200,
-                        }}
-                        InputProps={{
-                            classes:{
-                                root: styles.formElement,
-                                disabled: styles.formElement,
-                                notchedOutline: styles.formElement
-                            }
-                        }}
-                    />
-                    <TextField
-                        id="lastName"
-                        label="nazwisko*"
-                        variant="outlined"
-                        value={lastName}
-                        onChange={(event) => setLastName(event.target.value)}
-                        fullWidth
-                        autoComplete='off'
-                        inputProps={{
-                            maxLength: 200,
-                        }}
-                        InputProps={{
-                            classes:{
-                                root: styles.formElement,
-                                disabled: styles.formElement,
-                                notchedOutline: styles.formElement
-                            }
-                        }}
-                    />
+
                     {showError &&
                         <div>{error}</div>
                     }
                     <div className={styles.formElement}>
                         masz konto? <Link to="/" className={styles.register}>Zaloguj się!</Link>
                     </div>
+                    <div className={styles.button}>
                     <Button
                         variant="contained"
                         type="submit"
-                        className={styles.formElement}
                     >Zarejestruj się
                     </Button>
+                    </div>
                 </form>
             </div>
+        </div>
         </div>
     );
 }
