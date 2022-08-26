@@ -1,6 +1,10 @@
 import React from 'react';
-import WallPanelStyle from "./WallPanelStyle";
+import {Button, TextField} from "@mui/material";
+import WallPanelStyle from "../user_panel/WallPanelStyle";
+import {Link} from "react-router-dom";
 import getApiUrl from "../api/ApiUrl";
+import NewPost from "../new_post/NewPost";
+
 
 
 export default function WallPanel(props) {
@@ -20,15 +24,20 @@ export default function WallPanel(props) {
     }
 
     return (
-        <div className={styles.positioningBox}>
-            {user.email}{posty}
-            <button
+        <div className={styles.wallBackground}>
+        <div className={styles.feed}>
+
+            <NewPost></NewPost>
+
+            {/*{user.email}{posty}*/}
+            {/*<button
                 variant="contained"
                 type="submit"
                 onClick={(event) => buttonClick(event)}
             >
-                click me
-            </button>
+                peep the po
+            </button>*/}
+        </div>
         </div>
     );
 }
