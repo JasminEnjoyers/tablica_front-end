@@ -123,9 +123,10 @@ export default function RegisterPanel(props) {
                 <form onSubmit={(event) => SubmitButtonClicked(event)}>
                     <TextField
                         id="firstName"
-                        label="imię*"
+                        label="imię"
                         variant="outlined"
                         value={firstName}
+                        required
                         onChange={(event) => setFirstName(event.target.value)}
                         fullWidth
                         autoComplete='off'
@@ -142,9 +143,10 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="lastName"
-                        label="nazwisko*"
+                        label="nazwisko"
                         variant="outlined"
                         value={lastName}
+                        required
                         onChange={(event) => setLastName(event.target.value)}
                         fullWidth
                         autoComplete='off'
@@ -161,9 +163,10 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="login"
-                        label="nazwa użytkownika*"
+                        label="nazwa użytkownika"
                         variant="outlined"
                         value={login}
+                        required
                         onChange={(event) => setLogin(event.target.value)}
                         fullWidth
                         autoComplete='off'
@@ -180,10 +183,11 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="password"
-                        label="hasło*"
+                        label="hasło"
                         type="password"
                         variant="outlined"
                         value={password}
+                        required
                         onChange={(event) => setPassword(event.target.value)}
                         fullWidth
                         inputProps={{
@@ -199,9 +203,10 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="email"
-                        label="adres e-mail*"
+                        label="adres e-mail"
                         variant="outlined"
                         value={email}
+                        required
                         onChange={(event) => setEmail(event.target.value)}
                         fullWidth
                         autoComplete='off'
@@ -218,9 +223,10 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="phone"
-                        label="numer telefonu*"
+                        label="numer telefonu"
                         variant="outlined"
                         value={phone}
+                        required
                         onChange={(event) => setPhone(event.target.value)}
                         fullWidth
                         autoComplete='off'
