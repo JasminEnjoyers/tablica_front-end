@@ -8,7 +8,6 @@ export default function Sidebar(props) {
     function menuButtonClick(event){
         if(menuIsOpen) setMenuIsOpen(false)
         else setMenuIsOpen(true);
-        console.log(menuIsOpen);
     }
 
     return (

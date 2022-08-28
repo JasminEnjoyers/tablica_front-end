@@ -11,7 +11,7 @@ export default function NewPost(props){
     return(
         <div className={styles.newPost}>
             <div className={styles.newPostTop}>
-                <Input
+                <input
                     className={styles.newPostInput}
                     placeholder={"podziel się czymś"}
                     multiline
