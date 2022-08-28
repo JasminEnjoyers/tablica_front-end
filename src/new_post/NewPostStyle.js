@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
     newPost:{
-        height: "200px",
+        height: "250px",
         width: "100%",
         backgroundColor: "rgba(255,255,255,0.8)",
         backdropFilter: "blur(2px)",
@@ -13,7 +13,10 @@ export default makeStyles((theme) => ({
 
     newPostInput:{
         display: "flex",
-        justifyContent:"start",
+        alignItems:"center",
+        justifyItems:"center",
+        justifyContent:"center",
+        alignContent:"center",
         border: "none",
         width: "90%",
         height:"100%",
@@ -21,6 +24,9 @@ export default makeStyles((theme) => ({
     },
 
     newPostTop:{
+        display:"flex",
+        justifyContent:"center",
+        alignContent:"center",
         border: "none",
         width: "100%",
         height:"70%",
@@ -30,24 +36,35 @@ export default makeStyles((theme) => ({
     newPostBottom:{
         display: "flex",
         justifyContent: "center",
-
-        // naprawić to żeby się środkowało
-
+        alignContent:"center",
         border: "none",
         width: "100%",
         height:"30%",
         background:"none",
     },
 
+    buttonDiv:{
+        margin:"15px",
+    },
+
     shareButton: {
-
-        // żeby to kurna działało
-
-        height: "70%",
-        marginTop:"50",
-        padding: 50,
+        height: "100%",
         backgroundColor: "green",
         border: "none",
         WebkitBorderRadius: "4px",
     },
+
+    kategoriaDrop:{
+        display:"flex",
+        margin:"15px",
+
+        justifyContent:"center",
+        alignContent:"center",
+    },
+
+    kategoriaSelect:{
+        justifyContent:"center",
+        alignContent:"center",
+    },
+
 }));

@@ -16,53 +16,96 @@ export default function RegisterPanel(props) {
     const [showError, setShowError] = React.useState(false)
     const [loginError, setLoginError] = React.useState(false)
     const [emailError, setEmailError] = React.useState(false)
+    const [firstNameError, setFirstNameError] = React.useState(false)
+    const [lastNameError, setLastNameError] = React.useState(false)
+    const [passwordError, setPasswordError] = React.useState(false)
     const [phoneError, setPhoneError] = React.useState(false)
 
-    function ValidateEmail(email){
-        return email.toLowerCase().match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
-    }
-    function ValidatePhone(phone){
-        return phone.toLowerCase().match(
-            "[0-9]{9}"
-        );
-    }
+
+
 
     function SubmitButtonClicked(event){
         event.preventDefault();
 
+        /*setFirstNameError(false);
+        setLastNameError(false);
+        setLoginError(false);
+        setPasswordError(false);
+        setEmailError(false);
+        setPhoneError(false);*/
         var fetchBool = true;
+
+        function ValidateFirstName(firstName){
+            if(firstName?.length < 1 || firstName == null)
+                firstNameError=0
+            else
+                firstNameError=1
+        }
+        function ValidateLastName(lastName){
+            if(lastName?.length < 1 || lastName == null)
+                return 0
+            else
+                return 1
+        }
+        function ValidateLogin(login){
+            if(login?.length < 4 || login == null)
+                return 0
+            else
+                return 1
+        }
+        function ValidatePassword(password){
+            if(password?.length < 4 || password == null)
+                return 0
+            else
+                return 1
+        }
+        function ValidateEmail(email){
+            return email.toLowerCase().match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+        }
+        function ValidatePhone(phone){
+            return phone.toLowerCase().match(
+                "[0-9]{9}"
+            );
+        }
 
         if(login?.length < 4 || login == null){
             setError("zbyt krótki login");
             setShowError(true);
             fetchBool = false;
+            setLoginError(true);
         }
         if(password?.length < 4 || password == null){
             setError("zbyt łatwe hasło");
             setShowError(true);
             fetchBool = false;
+            setPasswordError(true);
         }
         if(!ValidateEmail(email)){
             setError("błędny adres email");
             setShowError(true);
             fetchBool = false;
+            setEmailError(true);
         }
         if(!ValidatePhone(phone)){
             setError("błędny numer telefonu");
             setShowError(true);
             fetchBool = false;
+            setPhoneError(true);
+            console.log(phone)
         }
         if(firstName?.length < 1 || firstName == null){
             setError("wprowadz imie");
             setShowError(true);
             fetchBool = false;
+            setFirstNameError(true);
         }
         if(lastName?.length < 1 || lastName == null){
             setError("wprowadz nazwisko");
             setShowError(true);
             fetchBool = false;
+            setLastNameError(true);
         }
 
         if(fetchBool) {
@@ -123,13 +166,14 @@ export default function RegisterPanel(props) {
                 <form onSubmit={(event) => SubmitButtonClicked(event)}>
                     <TextField
                         id="firstName"
-                        label="imię"
+                        placeholder={"Imię"}
                         variant="outlined"
                         value={firstName}
                         required
                         onChange={(event) => setFirstName(event.target.value)}
                         fullWidth
                         autoComplete='off'
+                        error={firstNameError}
                         inputProps={{
                             maxLength: 200,
                         }}
@@ -143,13 +187,14 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="lastName"
-                        label="nazwisko"
+                        placeholder={"Nazwisko"}
                         variant="outlined"
                         value={lastName}
                         required
                         onChange={(event) => setLastName(event.target.value)}
                         fullWidth
                         autoComplete='off'
+                        error={lastNameError}
                         inputProps={{
                             maxLength: 200,
                         }}
@@ -163,13 +208,14 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="login"
-                        label="nazwa użytkownika"
+                        placeholder={"Nazwa Użytkownika"}
                         variant="outlined"
                         value={login}
                         required
                         onChange={(event) => setLogin(event.target.value)}
                         fullWidth
                         autoComplete='off'
+                        error={loginError}
                         inputProps={{
                             maxLength: 24,
                         }}
@@ -183,13 +229,14 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="password"
-                        label="hasło"
+                        placeholder={"Hasło"}
                         type="password"
                         variant="outlined"
                         value={password}
                         required
                         onChange={(event) => setPassword(event.target.value)}
                         fullWidth
+                        error={passwordError}
                         inputProps={{
                             maxLength: 200,
                         }}
@@ -203,13 +250,14 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="email"
-                        label="adres e-mail"
+                        placeholder={"Adres e-mail"}
                         variant="outlined"
                         value={email}
                         required
                         onChange={(event) => setEmail(event.target.value)}
                         fullWidth
                         autoComplete='off'
+                        error={emailError}
                         inputProps={{
                             maxLength: 200,
                         }}
@@ -223,13 +271,14 @@ export default function RegisterPanel(props) {
                     />
                     <TextField
                         id="phone"
-                        label="numer telefonu"
+                        placeholder={"Numer telefonu"}
                         variant="outlined"
                         value={phone}
                         required
                         onChange={(event) => setPhone(event.target.value)}
                         fullWidth
                         autoComplete='off'
+                        error={phoneError}
                         inputProps={{
                             maxLength: 9,
                         }}
@@ -237,7 +286,7 @@ export default function RegisterPanel(props) {
                             classes:{
                                 root: styles.formElement,
                                 disabled: styles.formElement,
-                                notchedOutline: styles.formElement
+                                notchedOutline: styles.formElement,
                             },
                         }}
                     />

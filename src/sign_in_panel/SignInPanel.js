@@ -37,7 +37,7 @@ export default function SingInPanel(props) {
                 <form onSubmit={(event) => SubmitButtonClicked(event)}>
                     <TextField
                         id="login"
-                        label="login"
+                        placeholder={"login"}
                         variant="outlined"
                         value={login}
                         onChange={(event) => setLogin(event.target.value)}
@@ -53,7 +53,7 @@ export default function SingInPanel(props) {
                     />
                     <TextField
                         id="password"
-                        label="hasło"
+                        placeholder={"hasło"}
                         type="password"
                         variant="outlined"
                         value={password}

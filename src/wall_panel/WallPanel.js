@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, TextField} from "@mui/material";
-import WallPanelStyle from "../user_panel/WallPanelStyle";
+import WallPanelStyle from ".//WallPanelStyle";
 import {Link} from "react-router-dom";
 import getApiUrl from "../api/ApiUrl";
 import NewPost from "../new_post/NewPost";
