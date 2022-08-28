@@ -4,6 +4,10 @@ import PostComponent from "./PostComponent";
 
 export default function PostListComponent(props){
     const [posty, setPosty] = React.useState([]);
+    const {sortujWg} = props;
+
+    const dataSorted = [...posty].sort((a,b) => (new Date(a.data).getTime()) - (new Date(b.data).getTime()));
+    const sorted = [...posty].sort((a,b) => b[sortujWg]-a[sortujWg]);
 
     function fetchPosty(url){
          fetch(url, {method:"POST",credentials:"include"})
@@ -24,7 +28,7 @@ export default function PostListComponent(props){
 
     return(
         <div>
-            {posty.map(post => <PostComponent key = {post.id} post={post}/>)}
+            {((sortujWg==="dataDodania")?dataSorted:sorted).map(post => <PostComponent key={post.id} post={post}/>)}
         </div>
     )
 
