@@ -1,28 +1,16 @@
 import React from "react";
 
-class PostComponent extends React.Component {
-    state = {
-        tytul: "",
-        tekst: ""
-    }
+export default function PostComponent(props){
+    const {post}=props
+    const tytul=post.tytul;
+    const tekst=post.tekst;
 
-    constructor(props) {
-        super();
-        this.state.tytul = this.props;
-        this.state.tekst = this.props;
+    return (
+        <div>
+            <p>====================================</p>
+            {tytul}<br/>
+            {tekst}<br/>
 
-    }
-
-
-    render() {
-        return (
-            <div>
-                <p>====================================</p>
-                    {this.props.data.tytul}<br/>
-                    {this.props.data.tekst}<br/>
-            </div>
-        );
-    }
+        </div>
+    );
 }
-
-export default PostComponent;
