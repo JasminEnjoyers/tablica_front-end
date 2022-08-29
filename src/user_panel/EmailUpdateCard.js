@@ -19,25 +19,36 @@ export default function EmailUpdateCard(props) {
         );
     }
 
-    function updateEmail(event){
+    async function ValidateEmailUsed(email) {
+        var result = true;
+        await fetch(getApiUrl() + "user/email/" + email, {
+            method: "GET"
+        }).then((response) => response.json()).then((data) => {
+            result = Boolean(data);
+        })
+        return result;
+    }
+
+    async function updateEmail(event) {
         event.preventDefault()
-        if(!ValidateEmail(email)){
+        if (!ValidateEmail(email) || await ValidateEmailUsed(email)) {
             setError(true);
-        }else{
+        } else {
             setError(false);
-            fetch(getApiUrl() + "user/email/" + "?userId="+user.id+"&newEmail="+email,{
+            fetch(getApiUrl() + "user/email/" + "?userId=" + user.id + "&newEmail=" + email, {
                 method: "PUT"
             }).then(response => {
-                if(response.status == 200){
+                if (response.status == 200) {
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.email = email;
-                }
-                else{
+                } else {
                     setErrorAlert(true);
                     setShowAlert(true);
                 }
-                setTimeout(()=>{setShowAlert(false)},3000);
+                setTimeout(() => {
+                    setShowAlert(false)
+                }, 3000);
             })
         }
     }

@@ -12,7 +12,16 @@ export default function PhoneUpdateCard(props) {
     const [showAlert,setShowAlert] = React.useState(false)
     const [errorAlert, setErrorAlert] = React.useState(false)
 
-    const [phoneExist,setPhoneExist] = React.useState(false)
+
+    async function ValidatePhoneUsed(phone) {
+        var result = true;
+        await fetch(getApiUrl() + "user/phone/" + phone, {
+            method: "GET"
+        }).then((response) => response.json()).then((data) => {
+            result = Boolean(data);
+        })
+        return result;
+    }
 
     function ValidatePhone(phone){
         return phone.toLowerCase().match(
@@ -20,25 +29,26 @@ export default function PhoneUpdateCard(props) {
         );
     }
 
-    function updatePhone(event){
-        event.preventDefault()
-        if(!ValidatePhone(phone)){
+    async function updatePhone(event) {
+        event.preventDefault();
+        if (!ValidatePhone(phone) || await ValidatePhoneUsed(phone)) {
             setError(true);
-        }else{
+        } else {
             setError(false);
-            fetch(getApiUrl() + "user/phone/" + "?userId="+user.id+"&newPhone="+phone,{
+            fetch(getApiUrl() + "user/phone/" + "?userId=" + user.id + "&newPhone=" + phone, {
                 method: "PUT"
             }).then(response => {
-                if(response.status == 200){
+                if (response.status == 200) {
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.telefon = phone;
-                }
-                else{
+                } else {
                     setErrorAlert(true);
                     setShowAlert(true);
                 }
-                setTimeout(()=>{setShowAlert(false)},3000);
+                setTimeout(() => {
+                    setShowAlert(false)
+                }, 3000);
             })
         }
     }

@@ -12,30 +12,47 @@ export default function LoginUpdateCard(props) {
     const [showAlert,setShowAlert] = React.useState(false)
     const [errorAlert, setErrorAlert] = React.useState(false)
 
-
     function ValidateLogin(login){
-        return true
+        if(login.length < 4) return false
+        else return true
     }
 
-    function updateEmail(event){
+    async function ValidateLoginUsed(login) {
+        var result = true;
+        await fetch(getApiUrl() + "user/login/" + login, {
+            method: "GET"
+        }).then((response) => response.json()).then((data) => {
+            result = Boolean(data);
+        })
+        return result;
+    }
+
+    function ValidatePhone(phone){
+        return phone.toLowerCase().match(
+            "[0-9]{9}"
+        );
+    }
+
+    async function updateLogin(event) {
         event.preventDefault()
-        if(!ValidateLogin(login)){
+        if (!ValidateLogin(login) || await ValidateLoginUsed(login)) {
             setError(true);
-        }else{
+        } else {
             setError(false);
-            fetch(getApiUrl() + "user/login/" + "?userId="+user.id+"&newLogin="+login,{
+            fetch(getApiUrl() + "user/login/" + "?userId=" + user.id + "&newLogin=" + login, {
                 method: "PUT"
             }).then(response => {
-                if(response.status == 200){
+                if (response.status == 200) {
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.nazwa = login;
-                }
-                else{
+                } else {
                     setErrorAlert(true);
                     setShowAlert(true);
                 }
-                setTimeout(()=>{setShowAlert(false)},3000);
+                setTimeout(() => {
+                    setShowAlert(false)
+                }, 3000);
             })
         }
     }
@@ -44,7 +61,7 @@ export default function LoginUpdateCard(props) {
         <Card variant="outlined" className={styles.cardSpacing}>
             <h3>Zmień Login</h3>
             <CardContent>
-                <form onSubmit={(event) => updateEmail(event)}>
+                <form onSubmit={(event) => updateLogin(event)}>
                     <TextField
                         id="login"
                         label="Login"
