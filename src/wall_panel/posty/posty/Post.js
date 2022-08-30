@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PostComponent(props){
+export default function Post(props){
     const {post}=props
     const idAutora=post.id_autora;
     const tytul=post.tytul;

@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import getApiUrl from "../api/ApiUrl";
-import KategoriaComponent from "./KategoriaComponent";
+import getApiUrl from "../../../api/ApiUrl";
+import KategoriaComponent from "./Category";
 
-export default function KategoriaListComponent(props){
+export default function CategoryOptions(props){
     const [kategorie, setKategorie] = React.useState([]);
 
     function fetchKategorie(){

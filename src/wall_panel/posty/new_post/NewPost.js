@@ -1,7 +1,6 @@
 import React from 'react';
 import NewPostStyle from "./NewPostStyle";
 import {Button, Input, TextField} from "@mui/material";
-import getApiUrl from "../api/ApiUrl";
 
 export default function NewPost(props){
 

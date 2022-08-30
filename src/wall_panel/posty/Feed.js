@@ -1,9 +1,11 @@
 import React from "react";
-import KategoriaListComponent from "./KategoriaListComponent";
-import PostListComponent from "./PostListComponent";
-import SortowanieListComponent from "./SortowanieListComponent";
+import CategoryOptions from "./filtry/CategoryOptions";
+import PostList from "./posty/PostList";
+import SortOptions from "./filtry/SortOptions";
+import FeedStyle from "./FeedStyle";
 
-export default function Filtry(props){
+export default function Feed(props){
+    const styles = FeedStyle();
     const [kategoria, setKategoria] = React.useState("");
     const [sortujWg, setSortujWg] = React.useState("dataDodania");
 
@@ -15,17 +17,17 @@ export default function Filtry(props){
     }
 
     return (
-        <div>
+        <div className={styles.feed}>
             <div onChange={event=>kategoriaChanged(event)}>
                 <label>Kategoria</label>
-                <KategoriaListComponent/>
+                <CategoryOptions/>
             </div>
             <div onChange={event=>sortChanged(event)}>
                 <label>Sortuj według</label>
-                <SortowanieListComponent/>
+                <SortOptions/>
             </div>
 
-            <PostListComponent kategoria={kategoria} sortujWg={sortujWg}/>
+            <PostList kategoria={kategoria} sortujWg={sortujWg}/>
         </div>
     );
 }

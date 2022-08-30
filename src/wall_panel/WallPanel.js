@@ -1,9 +1,8 @@
 import React from 'react';
 import WallPanelStyle from ".//WallPanelStyle";
-import getApiUrl from "../api/ApiUrl";
-import NewPost from "../new_post/NewPost";
+import NewPost from "./posty/new_post/NewPost";
 import Sidebar from "../sidebar/Sidebar";
-import Filtry from "../components/Filtry";
+import Feed from "./posty/Feed";
 
 
 
@@ -16,9 +15,12 @@ export default function WallPanel(props) {
         <div className={styles.wallBackground}>
 
             <Sidebar/>
+
             <div className={styles.feed}>
-                <NewPost></NewPost>
-                <Filtry/>
+
+                <NewPost/>
+
+                <Feed/>
             </div>
         </div>
     );

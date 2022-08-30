@@ -15,8 +15,6 @@ class KategoriaComponent extends React.Component {
         <option value={this.state.id}>{this.state.nazwa}</option>
         )
     }
-
-
 }
 
 export default KategoriaComponent;

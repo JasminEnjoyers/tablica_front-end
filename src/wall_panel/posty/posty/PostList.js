@@ -1,9 +1,11 @@
 import React, {useEffect} from "react";
-import getApiUrl from "../api/ApiUrl";
-import PostComponent from "./PostComponent";
+import getApiUrl from "../../../api/ApiUrl";
+import Post from "./Post";
 import {renderToString} from "react-dom/server";
+import PostStyle from "./PostStyle";
 
-export default function PostListComponent(props){
+export default function PostList(props){
+    const styles = PostStyle();
     const [posty, setPosty] = React.useState([]);
     const {sortujWg} = props;
     const {kategoria} = props;
@@ -20,12 +22,13 @@ export default function PostListComponent(props){
             .then(response => response.json())
             .then(posty => {
                 document.getElementById("pojemnikNaPosty").innerHTML = "";
-                posty.forEach((post) => document.getElementById("pojemnikNaPosty").innerHTML += renderToString(<PostComponent key={post.id} post={post}/>))
+                posty.forEach((post) => document.getElementById("pojemnikNaPosty").innerHTML += renderToString(<Post key={post.id} post={post}/>))
             });
     }
 
     return(
-        <div id="pojemnikNaPosty" onLoad={fetchPosty()}>
+        <div
+            id="pojemnikNaPosty" onLoad={fetchPosty()}>
         </div>
     )
 
