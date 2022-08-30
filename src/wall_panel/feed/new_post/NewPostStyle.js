@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
     newPost:{
-        height: "10vh",
+        height: "15vh",
         width: "100%",
         backgroundColor: "rgba(255,255,255,0.8)",
         backdropFilter: "blur(2px)",

@@ -1,8 +1,8 @@
 import React from 'react';
 import WallPanelStyle from ".//WallPanelStyle";
-import NewPost from "./posty/new_post/NewPost";
+import NewPost from "./feed/new_post/NewPost";
 import Sidebar from "../sidebar/Sidebar";
-import Feed from "./posty/Feed";
+import Feed from "./feed/Feed";
 
 
 
@@ -16,7 +16,7 @@ export default function WallPanel(props) {
 
             <Sidebar/>
 
-            <div className={styles.feed}>
+            <div>
 
                 <NewPost/>
 

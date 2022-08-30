@@ -1,8 +1,10 @@
 import React, {useEffect} from "react";
 import getApiUrl from "../../../api/ApiUrl";
-import KategoriaComponent from "./Category";
+import Category from "./Category";
+import FiltryStyle from "./FiltryStyle";
 
 export default function CategoryOptions(props){
+    const styles = FiltryStyle();
     const [kategorie, setKategorie] = React.useState([]);
 
     function fetchKategorie(){
@@ -18,9 +20,9 @@ export default function CategoryOptions(props){
     },[]);
 
     return(
-        <select>
+        <select className={styles.menu}>
             <option value="">...</option>
-            {kategorie.map(kategoria => <KategoriaComponent key = {kategoria.id} data = {kategoria}/>)}
+            {kategorie.map(kategoria => <Category key = {kategoria.id} data = {kategoria}/>)}
         </select>
     )
 }

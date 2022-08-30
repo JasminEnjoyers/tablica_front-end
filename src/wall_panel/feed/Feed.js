@@ -1,7 +1,7 @@
 import React from "react";
-import CategoryOptions from "./filtry/CategoryOptions";
-import PostList from "./posty/PostList";
-import SortOptions from "./filtry/SortOptions";
+import CategoryOptions from "./filter/CategoryOptions";
+import PostList from "./post/PostList";
+import SortOptions from "./filter/SortOptions";
 import FeedStyle from "./FeedStyle";
 
 export default function Feed(props){
@@ -18,13 +18,15 @@ export default function Feed(props){
 
     return (
         <div className={styles.feed}>
-            <div onChange={event=>kategoriaChanged(event)}>
-                <label>Kategoria</label>
-                <CategoryOptions/>
-            </div>
-            <div onChange={event=>sortChanged(event)}>
-                <label>Sortuj według</label>
-                <SortOptions/>
+            <div>
+                <div className={styles.filter} onChange={event=>kategoriaChanged(event)}>
+                    <label>Kategoria</label>
+                    <CategoryOptions/>
+                </div>
+                <div className={styles.filter} onChange={event=>sortChanged(event)}>
+                    <label>Sortuj według</label>
+                    <SortOptions/>
+                </div>
             </div>
 
             <PostList kategoria={kategoria} sortujWg={sortujWg}/>
