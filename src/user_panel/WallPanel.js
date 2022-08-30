@@ -1,34 +1,30 @@
 import React from 'react';
+import SignInPanelStyle from "../sign_in_panel/SignInPanelStyle";
+import Filtry from "../components/Filtry";
 import WallPanelStyle from "./WallPanelStyle";
 import getApiUrl from "../api/ApiUrl";
-
 
 export default function WallPanel(props) {
     const styles = WallPanelStyle()
     const {user} = props
 
-    const [posty,setPosty] = React.useState(null)
 
-    function buttonClick(event){
+    /*function buttonClick(event){
         fetch(getApiUrl(), {
-            method: "GET",
+            method: 'post'
         }).then((response) => {
             response.json().then(r => {
                 r.forEach(console.log);
             })
         })
-    }
+    }*/
 
     return (
         <div className={styles.positioningBox}>
-            {user.email}{posty}
-            <button
-                variant="contained"
-                type="submit"
-                onClick={(event) => buttonClick(event)}
-            >
-                click me
-            </button>
+            {user.email}
+            <Filtry/>
+
+
         </div>
     );
 }
