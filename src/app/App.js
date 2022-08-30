@@ -1,9 +1,10 @@
 import './App.css';
 import React from 'react';
 import SingInPanel from "../sign_in_panel/SignInPanel";
-import WallPanel from "../user_panel/WallPanel";
+import WallPanel from "../wall_panel/WallPanel";
 import {Route, Routes} from "react-router-dom";
 import RegisterPanel from "../register_panel/RegisterPanel";
+import UserPanel from "../user_panel/UserPanel";
 
 function App() {
     const [user,setUser] = React.useState(null)
@@ -11,7 +12,11 @@ function App() {
       return (
           <div className="App">
               {user != null &&
-                  <WallPanel user={user}/>
+                  <Routes>
+                      <Route path="/" element={ <WallPanel user={user}/> }/>
+                      <Route path="/register" element={ <WallPanel user={user}/> }/>
+                      <Route path="/user" element={ <UserPanel user={user}/> }/>
+                  </Routes>
               }
               {user == null &&
                   <Routes>

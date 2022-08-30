@@ -1,7 +1,7 @@
 import {makeStyles} from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
-    logInBackground:{
+    RegisterPanelBackground:{
         display: "flex",
         justifyContent: 'center',
         alignItems: 'center',
@@ -36,7 +36,7 @@ export default makeStyles((theme) => ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        margin: 20,
+
     },
 
     registerTextBox:{
