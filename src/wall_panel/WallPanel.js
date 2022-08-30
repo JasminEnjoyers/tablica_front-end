@@ -16,7 +16,6 @@ export default function WallPanel(props) {
         <div className={styles.wallBackground}>
 
             <Sidebar/>
-
             <div className={styles.feed}>
                 <NewPost></NewPost>
                 <Filtry/>
