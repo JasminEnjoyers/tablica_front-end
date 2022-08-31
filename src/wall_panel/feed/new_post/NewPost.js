@@ -4,6 +4,7 @@ import {Button, FormControl, Input, InputLabel, MenuItem, Select, TextField} fro
 import getApiUrl from "../api/ApiUrl";
 
 
+
 export default function NewPost(props){
 
     const styles = NewPostStyle()
@@ -13,8 +14,7 @@ export default function NewPost(props){
     return(
         <div className={styles.newPost}>
             <div className={styles.newPostTop}>
-                <Input
-                    type={"text"}
+                <input
                     className={styles.newPostInput}
                     placeholder={"podziel się czymś"}
                     multiline

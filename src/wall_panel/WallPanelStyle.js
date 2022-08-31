@@ -15,16 +15,4 @@ export default makeStyles((theme) => ({
         width: 125,
         height: 125,
     },
-
-    feed: {
-        display: "flex",
-        width: 500,
-        height: "100vh",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-
-    }
-
-
 }));
