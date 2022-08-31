@@ -1,7 +1,7 @@
 import React from 'react';
 import NewPostStyle from "./NewPostStyle";
 import {Button, FormControl, Input, InputLabel, MenuItem, Select, TextField} from "@mui/material";
-import getApiUrl from "../api/ApiUrl";
+import getApiUrl from "../../../api/ApiUrl";
 
 
 
