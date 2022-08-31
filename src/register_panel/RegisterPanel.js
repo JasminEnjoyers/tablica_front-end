@@ -21,91 +21,100 @@ export default function RegisterPanel(props) {
     const [passwordError, setPasswordError] = React.useState(false)
     const [phoneError, setPhoneError] = React.useState(false)
 
-
+    function ValidateFirstName(firstName){
+        if(firstName?.length < 1 || firstName == null)
+            return 0
+        else
+            return 1
+    }
+    function ValidateLastName(lastName){
+        if(lastName?.length < 1 || lastName == null)
+            return 0
+        else
+            return 1
+    }
+    function ValidateLogin(login){
+        if(login?.length < 4 || login == null)
+            return 0
+        else
+            return 1
+    }
+    function ValidatePassword(password){
+        if(password?.length < 4 || password == null)
+            return 0
+        else
+            return 1
+    }
+    function ValidateEmail(email){
+        return email.toLowerCase().match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+    }
+    function ValidatePhone(phone){
+        return phone.toLowerCase().match(
+            "[0-9]{9}"
+        );
+    }
 
 
     function SubmitButtonClicked(event){
         event.preventDefault();
 
-        /*setFirstNameError(false);
+        setFirstNameError(false);
         setLastNameError(false);
         setLoginError(false);
         setPasswordError(false);
         setEmailError(false);
-        setPhoneError(false);*/
+        setPhoneError(false);
         var fetchBool = true;
 
-        function ValidateFirstName(firstName){
-            if(firstName?.length < 1 || firstName == null)
-                firstNameError=0
-            else
-                firstNameError=1
-        }
-        function ValidateLastName(lastName){
-            if(lastName?.length < 1 || lastName == null)
-                return 0
-            else
-                return 1
-        }
-        function ValidateLogin(login){
-            if(login?.length < 4 || login == null)
-                return 0
-            else
-                return 1
-        }
-        function ValidatePassword(password){
-            if(password?.length < 4 || password == null)
-                return 0
-            else
-                return 1
-        }
-        function ValidateEmail(email){
-            return email.toLowerCase().match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
-        }
-        function ValidatePhone(phone){
-            return phone.toLowerCase().match(
-                "[0-9]{9}"
-            );
-        }
 
-        if(login?.length < 4 || login == null){
+        if(!ValidateLogin(login)){
             setError("zbyt krótki login");
             setShowError(true);
             fetchBool = false;
             setLoginError(true);
+            console.log("login error")
         }
-        if(password?.length < 4 || password == null){
+
+        if(!ValidatePassword(password)){
             setError("zbyt łatwe hasło");
             setShowError(true);
             fetchBool = false;
             setPasswordError(true);
+            console.log("pass error")
         }
+
         if(!ValidateEmail(email)){
             setError("błędny adres email");
             setShowError(true);
             fetchBool = false;
             setEmailError(true);
+            console.log("mail error")
         }
+
         if(!ValidatePhone(phone)){
             setError("błędny numer telefonu");
             setShowError(true);
             fetchBool = false;
             setPhoneError(true);
-            console.log(phone)
+            console.log("phone error")
         }
-        if(firstName?.length < 1 || firstName == null){
+
+        if(!ValidateFirstName(firstName)){
             setError("wprowadz imie");
             setShowError(true);
             fetchBool = false;
             setFirstNameError(true);
+            console.log("imie error")
         }
-        if(lastName?.length < 1 || lastName == null){
+
+        if(!ValidateLastName(lastName)){
             setError("wprowadz nazwisko");
             setShowError(true);
             fetchBool = false;
             setLastNameError(true);
+            console.log("nazw error")
         }
 
         if(fetchBool) {
@@ -114,6 +123,7 @@ export default function RegisterPanel(props) {
             }).then(response => {
                 response.json().then(result => {
                         setLoginError(Boolean(result))
+                    console.log("GET loginError:" + loginError)
                     }
                 )
             })
@@ -122,6 +132,7 @@ export default function RegisterPanel(props) {
             }).then(response => {
                 response.json().then(result => {
                         setEmailError(Boolean(result))
+                    console.log("GET emailError:" + emailError)
                     }
                 )
             })
@@ -130,12 +141,13 @@ export default function RegisterPanel(props) {
             }).then(response => {
                 response.json().then(result => {
                         setPhoneError(Boolean(result))
+                    console.log("GET phoneError:" + phoneError)
                     }
                 )
             })
-            console.log("loginError= " + loginError)
-            console.log("emailError= " + emailError)
-            console.log("phoneError= " + phoneError)
+            console.log("po wyslaniu loginError= " + loginError)
+            console.log("po wyslaniu emailError= " + emailError)
+            console.log("po wyslaniu phoneError= " + phoneError)
 
             if(!loginError && !emailError && !phoneError)
             fetch(getApiUrl() + "register?login=" + login
