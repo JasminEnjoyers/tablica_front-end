@@ -7,6 +7,7 @@ import PhoneUpdateCard from "./PhoneUpdateCard";
 import FirstNameUpdateCard from "./FirstNameUpdateCard";
 import LastNameUpdateCard from "./LastNameUpdateCard";
 import LoginUpdateCard from "./LoginUpdateCard";
+import PasswordUpdateCard from "./PasswordUpdateCard";
 
 
 export default function UserPanel(props) {
@@ -35,6 +36,7 @@ export default function UserPanel(props) {
             <FirstNameUpdateCard user={user}/>
             <LastNameUpdateCard user={user}/>
             <LoginUpdateCard user={user}/>
+            <PasswordUpdateCard user={user}/>
 
         </div>
     );
