@@ -27,12 +27,6 @@ export default function LoginUpdateCard(props) {
         return result;
     }
 
-    function ValidatePhone(phone){
-        return phone.toLowerCase().match(
-            "[0-9]{9}"
-        );
-    }
-
     async function updateLogin(event) {
         event.preventDefault()
         if (!ValidateLogin(login) || await ValidateLoginUsed(login)) {
