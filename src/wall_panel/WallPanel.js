@@ -17,7 +17,6 @@ export default function WallPanel(props) {
             <Sidebar/>
 
             <div>
-
                 <NewPost/>
 
                 <Feed/>

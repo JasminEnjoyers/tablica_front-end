@@ -6,11 +6,13 @@ import FeedStyle from "./FeedStyle";
 
 export default function Feed(props){
     const styles = FeedStyle();
+
     const [kategoria, setKategoria] = React.useState("");
     const [sortujWg, setSortujWg] = React.useState("dataDodania");
 
     function kategoriaChanged(event){
         setKategoria(event.target.value);
+
     }
     function sortChanged(event){
         setSortujWg(event.target.value);

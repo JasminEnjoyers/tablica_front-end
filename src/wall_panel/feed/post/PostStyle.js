@@ -4,8 +4,7 @@ export default makeStyles((theme) => ({
     postList:{
         width: "100%",
         height: "95%",
-        justifyContent: 'center',
-        alignItems: 'center',
+
         //backgroundColor: "rgb(161,172,173)",
         //backdropFilter: "blur(2px)",
         //WebkitBorderRadius: "10px",
@@ -14,10 +13,7 @@ export default makeStyles((theme) => ({
     post:{
         backgroundColor: "rgb(205,0,255)",
 
-
         width: "100%",
-        alignSelf: "center",
-
         backdropFilter: "blur(2px)",
         WebkitBorderRadius: "10px",
     },
@@ -25,6 +21,7 @@ export default makeStyles((theme) => ({
     postUpper:{
         display: "block",
         backgroundColor: "rgb(0,108,255)",
+
 
         width: "100%",
         height: "85%",
@@ -34,6 +31,7 @@ export default makeStyles((theme) => ({
         backgroundColor: "rgb(66,255,0)",
 
         display: "inline-block",
+        
         width: "20%",
         height: "100%",
     },
@@ -53,8 +51,17 @@ export default makeStyles((theme) => ({
         width: "100%",
     },
 
-    postHeaderTile:{
+    postHeaderTileL:{
         display: "inline-block",
+        textAlign:"left",
+        backgroundColor: "rgb(255,255,0)",
+
+        width: "50%"
+    },
+
+    postHeaderTileR:{
+        display: "inline-block",
+        textAlign:"right",
         backgroundColor: "rgb(255,255,0)",
 
         width: "50%"
@@ -62,6 +69,7 @@ export default makeStyles((theme) => ({
 
     postMain:{
         display: "block",
+        textAlign: "justify",
         backgroundColor: "rgb(255,255,255)",
 
         width: "100%",
@@ -69,6 +77,7 @@ export default makeStyles((theme) => ({
 
     postFooter:{
         display: "block",
+        textAlign: "right",
         backgroundColor: "rgb(255,0,0)",
         width: "100%",
         height: "15%",
