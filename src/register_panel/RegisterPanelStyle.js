@@ -36,7 +36,6 @@ export default makeStyles((theme) => ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-
     },
 
     registerTextBox:{
@@ -55,5 +54,5 @@ export default makeStyles((theme) => ({
     logo:{
         width: 125,
         height: 125,
-    }
+    },
 }));
