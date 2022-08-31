@@ -15,10 +15,11 @@ export default function UserPanel(props) {
     const {user} = props
 
     return (
-        <div className={styles.body}>
+        <div className={styles.userBackground}>
             <Sidebar/>
+            <h3>Dane użytkownika</h3>
             <Card variant="outlined" className={styles.cardSpacing}>
-                <h3>Dane użytkownika</h3>
+
                 <CardContent className={styles.cardContentElements}>
                     <div>email: {user.email}</div>
                     <div>telefon: {user.telefon}</div>
