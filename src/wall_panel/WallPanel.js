@@ -13,7 +13,6 @@ export default function WallPanel(props) {
 
     return (
         <div className={styles.wallBackground}>
-
             <Sidebar/>
 
             <div>
