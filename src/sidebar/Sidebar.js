@@ -1,8 +1,11 @@
 import React from 'react';
-import {Button, Drawer, Menu, TextField} from "@mui/material";
+import {Button, Drawer, IconButton, Menu, SvgIcon, TextField} from "@mui/material";
 import {Link} from "react-router-dom";
+import SideBarStyle from ".//SideBarStyle";
+//import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Sidebar(props) {
+    const styles = SideBarStyle()
     const [menuIsOpen, setMenuIsOpen] = React.useState(false);
 
     function menuButtonClick(event){
@@ -11,18 +14,26 @@ export default function Sidebar(props) {
     }
 
     return (
-        <div>
-            <button
+        <div className={styles.sideContainer}>
+            <IconButton
+                className={styles.menuButton}
                 onClick={menuButtonClick}
-            >button
-            </button>
+                >menu
+                {/*<MenuIcon></MenuIcon>*/}
+            </IconButton>
             <Drawer
+                className={styles.sidePanel}
                 open={menuIsOpen}
                 onClose = {menuButtonClick}
                 anchor='left'
+                role='presentation'
             >
-                <Link to="/">Home</Link>
-                <Link to="/user">USER</Link>
+                <div className={styles.btnContainer}>
+                <Button className={styles.selectButton} component={Link} to="/" variant={"contained"}>Home</Button>
+                </div>
+                <div className={styles.btnContainer}>
+                <Button className={styles.selectButton} component={Link} to="/user" variant={"contained"}>user</Button>
+                </div>
             </Drawer>
         </div>
     );

@@ -20,18 +20,22 @@ export default function Feed(props){
 
     return (
         <div className={styles.feed}>
-            <div>
+
+            <div className={styles.controls}>
                 <div className={styles.filter} onChange={event=>kategoriaChanged(event)}>
                     <label>Kategoria</label>
                     <CategoryOptions/>
                 </div>
+
                 <div className={styles.filter} onChange={event=>sortChanged(event)}>
                     <label>Sortuj według</label>
                     <SortOptions/>
                 </div>
             </div>
 
-            <PostList kategoria={kategoria} sortujWg={sortujWg}/>
+            <div className={styles.feedSection}>
+                <PostList kategoria={kategoria} sortujWg={sortujWg}/>
+            </div>
         </div>
     );
 }

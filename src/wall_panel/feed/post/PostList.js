@@ -41,7 +41,6 @@ export default function PostList(props){
             let content =  document.getElementById("postListContainer");
             let last = content.children.length;
             posts.slice(last,last+5).forEach((post) => content.innerHTML += renderToString(<Post key={post.id} post={post}/>))
-
         }
     };
 

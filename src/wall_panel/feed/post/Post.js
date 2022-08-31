@@ -33,7 +33,7 @@ export default function Post(props){
 
     return (
         <div className={styles.post}>
-            <div className={styles.postUpper}>
+            <div className={styles.postTop}>
                 <div className={styles.postUpperLeft}>{ocena}</div>
                 <div className={styles.postUpperRight}>
                     <div className={styles.postHeader}>

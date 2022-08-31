@@ -1,5 +1,6 @@
 import React from "react";
 import FiltryStyle from "./FiltryStyle";
+import {MenuItem} from "@mui/material";
 
 export default function Category(props){
     const styles = FiltryStyle();
@@ -7,7 +8,7 @@ export default function Category(props){
     const {nazwa} = props.data;
 
     return(
-        <option className={styles.menuOption} value={id}>{nazwa}</option>
+        <MenuItem className={styles.menuOption} value={id}>{nazwa}</MenuItem>
     )
 }
 
