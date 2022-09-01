@@ -4,11 +4,11 @@ import {MenuItem} from "@mui/material";
 
 export default function Category(props){
     const styles = FiltryStyle();
-    const {id} = props.data;
-    const {nazwa} = props.data;
+
+    const {kategoria} = props;
 
     return(
-        <MenuItem className={styles.menuOption} value={id}>{nazwa}</MenuItem>
+        <MenuItem className={styles.menuOption} value={kategoria.nazwa}>{kategoria.nazwa}</MenuItem>
     )
 }
 

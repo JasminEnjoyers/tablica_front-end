@@ -4,6 +4,9 @@ import {Button, FormControl, Input, InputLabel, MenuItem, Select, TextField} fro
 import getApiUrl from "../../../api/ApiUrl";
 import {renderToString} from "react-dom/server";
 
+import CategoryOptions from "../filter/CategoryOptions";
+
+
 
 
 export default function NewPost(props){
@@ -20,6 +23,10 @@ export default function NewPost(props){
         }
     }
 
+    function kategoriaChanged(event){
+        setKategoria(event.target.value);
+    }
+
     return(
         <div className={styles.newPost}>
             <div className={styles.newPostTop}>
@@ -33,18 +40,7 @@ export default function NewPost(props){
             </div>
             <div className={styles.newPostBottom}>
                 <div className={styles.kategoriaDrop}>
-                <select component={"Select"}
-                    id={"menuKategorii"}
-                    className={styles.kategoriaSelect}
-                    value={kategoria}
-                    displayEmpty
-                    autoWidth
-
-                    onLoad={renderKategorie()}
-
-                    onChange={(event) => setKategoria(event.target.value)}>
-
-                </select>
+                <CategoryOptions onChange={event=>kategoriaChanged(event)}/>
                 </div>
                 <div className={styles.buttonDiv}>
                 <Button className={styles.shareButton}

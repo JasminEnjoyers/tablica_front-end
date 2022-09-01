@@ -10,16 +10,18 @@ export default function CategoryOptions(props){
 
 
 
+
     return(
         <Select className={styles.menu}
-            size={"small"}>
+            size={"small"}
+            onChange={event=>props.onChange(event)}>
             <MenuItem
                 className={styles.menuOption}
                 value="">...</MenuItem>
             {kategorie.map(kategoria =>
                 <Category
                     key = {kategoria.id}
-                    data = {kategoria}
+                    kategoria = {kategoria}
                 />
             )}
         </Select>
