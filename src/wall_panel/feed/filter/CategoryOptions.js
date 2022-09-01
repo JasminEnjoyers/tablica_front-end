@@ -8,17 +8,7 @@ export default function CategoryOptions(props){
     const styles = FiltryStyle();
     const [kategorie, setKategorie] = React.useState([]);
 
-    function fetchKategorie(){
-        fetch(getApiUrl() + "api/kategorie/kategorie")
-            .then(response => response.json())
-            .then(kategorie => {
-                setKategorie(kategorie);
-            });
-    }
 
-    useEffect(()=> {
-        fetchKategorie()
-    },[]);
 
     return(
         <Select className={styles.menu}
