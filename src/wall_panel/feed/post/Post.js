@@ -7,29 +7,13 @@ export default function Post(props){
     const styles = PostStyle();
 
     const {post} = props;
-    const idAutora =post.id_autora;
+    const autor = post.autor;
     const tytul = post.tytul;
     const tekst = post.tekst;
     const data = post.data;
-    const idKategorii = post.id_kategorii;
+    const kategoria = post.kategoria;
     const ocena = post.ocena;
 
-
-    function fetchAutor(){
-        let url = getApiUrl() + 'api/uzytkownicy/uzytkownik?id='+idAutora;
-
-        fetch(url,{method:"GET"})
-            .then(response=>response.json())
-            .then(user => document.getElementById("postAuthor"+post.id).innerHTML = user.nazwa)
-    }
-
-    function fetchKategoria(){
-        let url = getApiUrl() + 'api/kategorie/kategoria?id='+idKategorii;
-
-        fetch(url,{method:"GET"})
-            .then(response=>response.json())
-            .then(category => document.getElementById("postKategoria"+post.id).innerHTML = category.nazwa)
-    }
 
     return (
         <div className={styles.post}>
@@ -41,13 +25,13 @@ export default function Post(props){
                 </div>
                 <div className={styles.postUpperRight}>
                     <div className={styles.postHeader}>
-                        <div className={styles.postHeaderTileL} id={"postAuthor"+post.id} onLoad={fetchAutor()}></div>
+                        <div className={styles.postHeaderTileL}>{autor}</div>
                         <div className={styles.postHeaderTileR}>{data}</div>
 
                     </div>
                     <div className={styles.postHeader}>
                         <div className={styles.postHeaderTileL}>{tytul}</div>
-                        <div className={styles.postHeaderTileR}id={"postKategoria"+post.id} onLoad={fetchKategoria()}></div>
+                        <div className={styles.postHeaderTileR}>{kategoria}</div>
                     </div>
                     <div className={styles.postMain}>{tekst}</div>
                 </div>

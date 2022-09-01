@@ -12,7 +12,6 @@ export default function Feed(props){
 
     function kategoriaChanged(event){
         setKategoria(event.target.value);
-
     }
     function sortChanged(event){
         setSortujWg(event.target.value);
