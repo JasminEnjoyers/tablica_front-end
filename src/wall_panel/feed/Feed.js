@@ -10,10 +10,14 @@ export default function Feed(props){
     const [kategoria, setKategoria] = React.useState("");
     const [sortujWg, setSortujWg] = React.useState("dataDodania");
 
-    function kategoriaChanged(event){
-        setKategoria(event.target.value);
+    function kategoriaChanged(value){
+        //console.log("kategoriaChanged");
+        //console.log(value);
+        setKategoria(value);
     }
     function sortChanged(event){
+        //console.log("sortChanged");
+        //console.log(event.target.value);
         setSortujWg(event.target.value);
     }
 
@@ -21,14 +25,13 @@ export default function Feed(props){
         <div className={styles.feed}>
 
             <div className={styles.controls}>
-                <div className={styles.filter} onChange={event=>kategoriaChanged(event)}>
+                <div className={styles.filter}>
                     <label>Kategoria</label>
-                    <CategoryOptions/>
+                    <CategoryOptions id="PostListCategoryOptions" kategoria={kategoria} onChange={(event,value)=>kategoriaChanged(event,value)}/>
                 </div>
-
-                <div className={styles.filter} onChange={event=>sortChanged(event)}>
+                <div className={styles.filter} >
                     <label>Sortuj według</label>
-                    <SortOptions/>
+                    <SortOptions filtr={sortujWg} onChange={event=>sortChanged(event)}/>
                 </div>
             </div>
 

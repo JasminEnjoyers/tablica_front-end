@@ -33,7 +33,6 @@ export default function SingInPanel(props) {
                     className={styles.logo}
                     alt="heh"
                 />
-
                 <form onSubmit={(event) => SubmitButtonClicked(event)}>
                     <TextField
                         id="login"

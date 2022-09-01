@@ -1,6 +1,5 @@
 import React from "react";
 import PostStyle from "./PostStyle";
-import getApiUrl from "../../../api/ApiUrl";
 
 
 export default function Post(props){
@@ -13,7 +12,6 @@ export default function Post(props){
     const data = post.data;
     const kategoria = post.kategoria;
     const ocena = post.ocena;
-
 
     return (
         <div className={styles.post}>
@@ -40,7 +38,7 @@ export default function Post(props){
             </div>
             <div className={styles.postFooter}>
                 <button>Dodaj do obserwowanych</button>
-                <button href='https://jbzd.com.pl'>Zgłoś</button>
+                <button>Zgłoś</button>
             </div>
         </div>
     );

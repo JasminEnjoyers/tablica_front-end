@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Alert, Button, Card, CardContent, Drawer, Menu, TextField} from "@mui/material";
+import React from 'react';
+import {Alert, Button, Card, CardContent, TextField} from "@mui/material";
 import getApiUrl from "../api/ApiUrl";
 import UserPanelStyle from "./UserPanelStyle";
 
@@ -18,7 +18,7 @@ export default function PasswordUpdateCard(props) {
 
     async function ValidatePasswordUsed(password) {
         var result = true;
-        await fetch(getApiUrl() + "user/password/" + "?userId=" + user.id + "&password=" + password, {
+        await fetch(getApiUrl() + "user/password/?userId=" + user.id + "&password=" + password, {
             method: "GET"
         }).then((response) => response.json()).then((data) => {
             result = Boolean(data);
@@ -35,7 +35,7 @@ export default function PasswordUpdateCard(props) {
     }
 
     function ValidateNewPassword(password,password2){
-        if(password != password2){
+        if(password !== password2){
             setNewPasswordError(true);
             return false;
         }
@@ -53,10 +53,10 @@ export default function PasswordUpdateCard(props) {
             setError(true);
         } else {
             setError(false);
-            fetch(getApiUrl() + "user/password/" + "?userId=" + user.id + "&newPassword=" + newPassword, {
+            fetch(getApiUrl() + "user/password/?userId=" + user.id + "&newPassword=" + newPassword, {
                 method: "PUT"
             }).then(response => {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     setErrorAlert(false);
                     setShowAlert(true);
                 } else {

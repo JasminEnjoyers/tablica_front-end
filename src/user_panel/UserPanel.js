@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from "../sidebar/Sidebar";
 import UserPanelStyle from "./UserPanelStyle";
-import {Alert, Button, Card, CardContent, TextField} from "@mui/material";
+import {Card, CardContent} from "@mui/material";
 import EmailUpdateCard from "./EmailUpdateCard";
 import PhoneUpdateCard from "./PhoneUpdateCard";
 import FirstNameUpdateCard from "./FirstNameUpdateCard";

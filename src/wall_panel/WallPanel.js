@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import WallPanelStyle from ".//WallPanelStyle";
 import NewPost from "./feed/new_post/NewPost";
 import Sidebar from "../sidebar/Sidebar";
@@ -12,7 +12,6 @@ export default function WallPanel(props) {
     return (
         <div className={styles.wallBackground}>
             <Sidebar/>
-
             <div>
                 <div className={styles.newPostContainer}>
                     <NewPost></NewPost>

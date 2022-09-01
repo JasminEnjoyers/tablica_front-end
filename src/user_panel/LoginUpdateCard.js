@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Button, Card, CardContent, Drawer, Menu, TextField} from "@mui/material";
+import {Alert, Button, Card, CardContent, TextField} from "@mui/material";
 import getApiUrl from "../api/ApiUrl";
 import UserPanelStyle from "./UserPanelStyle";
 
@@ -33,10 +33,10 @@ export default function LoginUpdateCard(props) {
             setError(true);
         } else {
             setError(false);
-            fetch(getApiUrl() + "user/login/" + "?userId=" + user.id + "&newLogin=" + login, {
+            fetch(getApiUrl() + "user/login/?userId=" + user.id + "&newLogin=" + login, {
                 method: "PUT"
             }).then(response => {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.nazwa = login;

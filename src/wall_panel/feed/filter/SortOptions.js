@@ -4,6 +4,8 @@ import {MenuItem, Select} from "@mui/material";
 
 export default function SortOptions(props){
     const styles = FiltryStyle();
+
+    const {filtr} = props;
     const [filtry] = React.useState([
         "dataDodania",
         "ocena"
@@ -11,7 +13,9 @@ export default function SortOptions(props){
 
     return(
         <Select className={styles.menu}
-                size={"small"}>
+                size={"small"}
+                value={filtr}
+                onChange={props.onChange}>
             {filtry.map(filtr =>
                 <MenuItem
                     className={styles.menuOption}

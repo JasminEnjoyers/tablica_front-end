@@ -26,6 +26,7 @@ export default function PostList(props){
             .then(response => response.json())
             .then(posty => {
                 posts = ((sortujWg==="dataDodania")?dataSorted(posty):sorted(posty));
+                //console.log(posts)
                 document.getElementById("postListContainer").innerHTML = "";
                 posts.slice(0,10)
                     .forEach(
