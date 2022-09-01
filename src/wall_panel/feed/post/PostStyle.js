@@ -4,18 +4,18 @@ export default makeStyles((theme) => ({
     postList:{
         width: "100%",
         height: "95%",
-
-        //backgroundColor: "rgb(161,172,173)",
-        //backdropFilter: "blur(2px)",
-        //WebkitBorderRadius: "10px",
     },
 
     post:{
-        backgroundColor: "rgb(205,0,255)",
-
+        height: "auto",
         width: "100%",
+        backgroundColor: "rgba(255,255,255,0.8)",
         backdropFilter: "blur(2px)",
         WebkitBorderRadius: "10px",
+        WebkitBoxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
+        padding:5,
+        boxSizing:"border-box",
+        marginBottom:20,
     },
 
     postUpper:{
@@ -38,7 +38,6 @@ export default makeStyles((theme) => ({
 
     postUpperRight:{
         backgroundColor: "rgb(196,0,255)",
-
         display: "inline-block",
         width: "80%",
         height: "100%",
@@ -71,7 +70,7 @@ export default makeStyles((theme) => ({
         display: "block",
         textAlign: "justify",
         backgroundColor: "rgb(255,255,255)",
-
+        height:"auto",
         width: "100%",
     },
 

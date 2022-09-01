@@ -1,13 +1,25 @@
 import {makeStyles} from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
+    controls:{
+        display:"flex",
+        height:"45px",
+        marginBottom:50,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "rgba(255,255,255,0.8)",
+        backdropFilter: "blur(2px)",
+        WebkitBorderRadius: "10px",
+        WebkitBoxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
+    },
+
     feed: {
         width: 500,
-        //height: "90vh",
+        minHeight: "10vh",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "rgb(161,172,173)",
+        //backgroundColor: "rgb(161,172,173)",
         backdropFilter: "blur(2px)",
         WebkitBorderRadius: "10px",
     },
@@ -18,9 +30,10 @@ export default makeStyles((theme) => ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "rgb(161,172,173)",
-        backdropFilter: "blur(2px)",
-        WebkitBorderRadius: "10px",
+    },
+
+    feedSection:{
+      paddingTop:"50px",
     },
 
 }));

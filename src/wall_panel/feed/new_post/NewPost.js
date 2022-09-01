@@ -2,6 +2,7 @@ import React from 'react';
 import NewPostStyle from "./NewPostStyle";
 import {Button, FormControl, Input, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import getApiUrl from "../../../api/ApiUrl";
+import {renderToString} from "react-dom/server";
 
 
 
@@ -10,6 +11,14 @@ export default function NewPost(props){
     const styles = NewPostStyle()
     const {user} = props
     const [kategoria,setKategoria] = React.useState("")
+    const {kategorie} = props;
+
+    function renderKategorie() {
+        if (kategorie !== null){
+            document.getElementById("menuKategorii").innerHTML ="";
+            kategorie.forEach(kategoria => document.getElementById("menuKategorii").innerHTML += renderToString(<option component="MenuItem" id={kategoria.id} value={kategoria.nazwa}>{kategoria.nazwa}</option>));
+        }
+    }
 
     return(
         <div className={styles.newPost}>
@@ -24,24 +33,18 @@ export default function NewPost(props){
             </div>
             <div className={styles.newPostBottom}>
                 <div className={styles.kategoriaDrop}>
-                <Select
+                <select component={"Select"}
+                    id={"menuKategorii"}
                     className={styles.kategoriaSelect}
                     value={kategoria}
                     displayEmpty
                     autoWidth
 
+                    onLoad={renderKategorie()}
+
                     onChange={(event) => setKategoria(event.target.value)}>
 
-                    <MenuItem value={""}>kategoria</MenuItem>
-                    <MenuItem value={"motoryzacja"}>motoryzacja</MenuItem>
-                    <MenuItem value={"dom i ogrod"}>dom i ogród</MenuItem>
-                    <MenuItem value={"praca"}>praca</MenuItem>
-                    <MenuItem value={"hobby"}>hobby</MenuItem>
-                    <MenuItem value={"zwierzeta"}>zwierzęta</MenuItem>
-                    <MenuItem value={"antyki"}>antyki</MenuItem>
-                    <MenuItem value={"kuoki"}>kuoki</MenuItem>
-
-                </Select>
+                </select>
                 </div>
                 <div className={styles.buttonDiv}>
                 <Button className={styles.shareButton}

@@ -33,8 +33,12 @@ export default function Post(props){
 
     return (
         <div className={styles.post}>
-            <div className={styles.postUpper}>
-                <div className={styles.postUpperLeft}>{ocena}</div>
+            <div className={styles.postTop}>
+                <div className={styles.postUpperLeft}>
+                    <button>+</button>
+                    {ocena}
+                    <button>-</button>
+                </div>
                 <div className={styles.postUpperRight}>
                     <div className={styles.postHeader}>
                         <div className={styles.postHeaderTileL} id={"postAuthor"+post.id} onLoad={fetchAutor()}></div>
@@ -51,7 +55,8 @@ export default function Post(props){
 
             </div>
             <div className={styles.postFooter}>
-                <a href='https://jbzd.com.pl'>report</a>
+                <button>Dodaj do obserwowanych</button>
+                <button href='https://jbzd.com.pl'>Zgłoś</button>
             </div>
         </div>
     );
