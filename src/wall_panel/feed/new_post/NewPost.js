@@ -1,13 +1,9 @@
 import React from 'react';
 import NewPostStyle from "./NewPostStyle";
 import {Button, FormControl, Input, InputLabel, MenuItem, Select, TextField} from "@mui/material";
-import getApiUrl from "../../../api/ApiUrl";
 import {renderToString} from "react-dom/server";
 
 import CategoryOptions from "../filter/CategoryOptions";
-
-
-
 
 export default function NewPost(props){
 

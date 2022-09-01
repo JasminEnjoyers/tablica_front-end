@@ -7,14 +7,25 @@ import {MenuItem, Select} from "@mui/material";
 export default function CategoryOptions(props){
     const styles = FiltryStyle();
     const [kategorie, setKategorie] = React.useState([]);
+    const [kategoria, setKategoria] = React.useState("");
 
+    function fetchKategorie(){
+        fetch(getApiUrl() + "api/kategorie/kategorie")
+            .then(response => response.json())
+            .then(kategorie => {
+                setKategorie(kategorie);
+            });
+    }
 
+    useEffect(()=> {
+        fetchKategorie()
+    },[]);
 
 
     return(
         <Select className={styles.menu}
-            size={"small"}
-            onChange={event=>props.onChange(event)}>
+                size={"small"}
+                value={kategoria}>
             <MenuItem
                 className={styles.menuOption}
                 value="">...</MenuItem>

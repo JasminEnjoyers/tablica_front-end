@@ -3,8 +3,6 @@ import WallPanelStyle from ".//WallPanelStyle";
 import NewPost from "./feed/new_post/NewPost";
 import Sidebar from "../sidebar/Sidebar";
 import Feed from "./feed/Feed";
-import getApiUrl from "../api/ApiUrl";
-
 
 
 export default function WallPanel(props) {
