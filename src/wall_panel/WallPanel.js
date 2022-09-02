@@ -11,7 +11,7 @@ export default function WallPanel(props) {
 
     return (
         <div className={styles.wallBackground}>
-            <Sidebar/>
+            <Sidebar user={user}/>
             <div>
                 <div className={styles.newPostContainer}>
                     <NewPost></NewPost>

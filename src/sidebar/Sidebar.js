@@ -7,6 +7,7 @@ import SideBarStyle from ".//SideBarStyle";
 export default function Sidebar(props) {
     const styles = SideBarStyle()
     const [menuIsOpen, setMenuIsOpen] = React.useState(false);
+    const {user} = props
 
     function menuButtonClick(event){
         if(menuIsOpen) setMenuIsOpen(false)
@@ -29,11 +30,16 @@ export default function Sidebar(props) {
                 role='presentation'
             >
                 <div className={styles.btnContainer}>
-                <Button className={styles.selectButton} component={Link} to="/" variant={"contained"}>Home</Button>
+                    <Button className={styles.selectButton} component={Link} to="/" variant={"contained"}>Home</Button>
                 </div>
                 <div className={styles.btnContainer}>
-                <Button className={styles.selectButton} component={Link} to="/user" variant={"contained"}>user</Button>
+                    <Button className={styles.selectButton} component={Link} to="/user" variant={"contained"}>User</Button>
                 </div>
+                {user.grupa === 1 &&
+                    <div className={styles.btnContainer}>
+                        <Button className={styles.selectButton} component={Link} to="/reported" variant={"contained"}>Zgłoszone posty</Button>
+                    </div>
+                }
             </Drawer>
         </div>
     );

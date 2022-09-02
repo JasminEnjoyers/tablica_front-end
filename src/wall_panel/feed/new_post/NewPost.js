@@ -7,13 +7,10 @@ import CategoryOptions from "../filter/CategoryOptions";
 export default function NewPost(props){
 
     const styles = NewPostStyle()
-    const {user} = props
     const [kategoria,setKategoria] = React.useState("")
 
 
     function kategoriaChanged(value){
-        //console.log("kategoriaChanged");
-        //console.log(value);
         setKategoria(value);
 
     }
@@ -24,7 +21,6 @@ export default function NewPost(props){
                 <input
                     className={styles.newPostInput}
                     placeholder={"podziel się czymś"}
-                    //value={post}
                 />
             </div>
             <div className={styles.newPostBottom}>

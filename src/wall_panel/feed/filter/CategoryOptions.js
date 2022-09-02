@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import getApiUrl from "../../../api/ApiUrl";
 import FiltryStyle from "./FiltryStyle";
-import {Menu, MenuItem, MenuList, Select} from "@mui/material";
+import {MenuItem, Select} from "@mui/material";
 
 export default function CategoryOptions(props){
     const styles = FiltryStyle();

@@ -1,4 +1,4 @@
-import React, {Children} from "react";
+import React from "react";
 import getApiUrl from "../../../api/ApiUrl";
 import Post from "./Post";
 import {renderToString} from "react-dom/server";
