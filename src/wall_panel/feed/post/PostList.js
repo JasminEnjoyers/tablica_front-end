@@ -11,7 +11,7 @@ export default function PostList(props){
     let posts = [];
 
     function dataSorted(posty){
-        return [...posty].sort((a,b) => (new Date(a.data).getTime()) - (new Date(b.data).getTime()));
+        return [...posty].sort((a,b) => (new Date(b.data).getTime()) - (new Date(a.data).getTime()));
     }
     function sorted(posty){
         return [...posty].sort((a,b) => b[sortujWg]-a[sortujWg]);
