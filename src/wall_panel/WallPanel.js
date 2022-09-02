@@ -14,7 +14,7 @@ export default function WallPanel(props) {
             <Sidebar/>
             <div>
                 <div className={styles.newPostContainer}>
-                    <NewPost></NewPost>
+                    <NewPost user={user}></NewPost>
                 </div>
 
                 <div className={styles.feedContainer}>

@@ -26,7 +26,7 @@ export default function PostList(props){
     };
 
     useEffect(()=>{
-        let url = getApiUrl() + "api/posty/posty";
+        let url = getApiUrl() + "posty";
         if(kategoria!==""){
             url = url + "?kategoria=" + kategoria;
         }

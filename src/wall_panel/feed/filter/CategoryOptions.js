@@ -9,7 +9,7 @@ export default function CategoryOptions(props){
     const {kategoria} = props;
 
     function fetchKategorie(){
-        fetch(getApiUrl() + "api/kategorie/kategorie")
+        fetch(getApiUrl() + "kategorie")
             .then(response => response.json())
             .then(kategorie => {
                 //console.log("fetch");
