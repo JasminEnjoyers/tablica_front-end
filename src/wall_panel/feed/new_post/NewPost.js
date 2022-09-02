@@ -3,12 +3,48 @@ import NewPostStyle from "./NewPostStyle";
 import {Button} from "@mui/material";
 
 import CategoryOptions from "../filter/CategoryOptions";
+import getApiUrl from "../../../api/ApiUrl";
 
 export default function NewPost(props){
 
     const styles = NewPostStyle()
     const {user} = props
     const [kategoria,setKategoria] = React.useState("")
+
+
+    function ValidateLength(tytul, min, max){
+        var l = tytul.length;
+        return (min <= l && l < max);
+    }
+
+    function ValidateKategoria(nazwa){
+        return !(nazwa.equals(""));
+    }
+
+    async function ValidateKategoriaUsed(nazwa){
+        var result = true;
+        await fetch(getApiUrl() + "api/kategorie/nazwa/" + nazwa, {
+            method: "GET"
+        }).then((response) => response.json()).then((data) => {
+            result = Boolean(data);
+        })
+        return result;
+    }
+
+    async function ValidateAutorUsed(login) {
+        var result = true;
+        await fetch(getApiUrl() + "user/login/" + login, {
+            method: "GET"
+        }).then((response) => response.json()).then((data) => {
+            result = Boolean(data);
+        })
+        return result;
+    }
+
+    async function SubmitButtonClicked(event){
+        event.preventDefault();
+
+    }
 
 
     function kategoriaChanged(value){
