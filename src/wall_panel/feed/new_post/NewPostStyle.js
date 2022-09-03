@@ -11,6 +11,18 @@ export default makeStyles((theme) => ({
         WebkitBoxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
     },
 
+    newPostTitleInput:{
+        display: "flex",
+        alignItems:"center",
+        justifyItems:"center",
+        justifyContent:"center",
+        alignContent:"center",
+        border: "none",
+        width: "90%",
+        height:"20%",
+        background:"none",
+    },
+
     newPostInput:{
         display: "flex",
         alignItems:"center",
@@ -19,12 +31,13 @@ export default makeStyles((theme) => ({
         alignContent:"center",
         border: "none",
         width: "90%",
-        height:"100%",
+        height:"70%",
         background:"none",
     },
 
     newPostTop:{
         display:"flex",
+        flexFlow: "row wrap",
         justifyContent:"center",
         alignContent:"center",
         border: "none",

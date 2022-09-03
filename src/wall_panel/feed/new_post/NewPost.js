@@ -108,21 +108,38 @@ export default function NewPost(props){
         <div className={styles.newPost}>
             <div className={styles.newPostTop}>
                 <input
-                    className={styles.newPostInput}
+                    className={styles.newPostTitleInput}
                     placeholder={"Wpisz tytuł"}
                     onChange={(event)=>setTytul(event.target.value)}
+                    error={tytulError}
+                    inputProps={{
+                        classes:{
+                            maxLength: 254,
+                        }
+                    }}
                     //value={post}
                 />
                 <input
                     className={styles.newPostInput}
                     placeholder={"podziel się czymś"}
                     onChange={(event)=>setTekst(event.target.value)}
+                    error={tekstError}
+                    inputProps={{
+                        classes:{
+                            maxLength: 1022,
+                        }
+                    }}
                     //value={post}
                 />
             </div>
             <div className={styles.newPostBottom}>
                 <div className={styles.kategoriaDrop}>
-                <CategoryOptions id="NewPostCategoryOptions" kategoria={kategoria} onChange={kategoriaChanged}/>
+                <CategoryOptions
+                    id="NewPostCategoryOptions"
+                    kategoria={kategoria}
+                    onChange={kategoriaChanged}
+                    error={kategoriaError}
+                />
                 </div>
                 <div className={styles.buttonDiv}>
                 <Button className={styles.shareButton}

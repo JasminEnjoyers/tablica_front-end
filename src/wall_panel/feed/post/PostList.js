@@ -33,15 +33,15 @@ export default function PostList(props){
         fetch(url, {method:"GET",credentials:"include"})
             .then(response => response.json())
             .then(posty => {
-                console.log("fetch");
-                console.log(posty);
+                //console.log("fetch");
+                //console.log(posty);
                 setPosty(posty);
             });
     },[kategoria])
 
     return(
         <div className={styles.postList} id={"postListContainer"}>
-            {((kategoria==="DataDodania")? dataSorted(posty): sorted(posty)).slice(0,last).map(post => <Post key={post.id} post={post}/>)}
+            {((sortujWg==="dataDodania")?dataSorted(posty):sorted(posty)).slice(0,last).map(post => <Post key={post.id} post={post}/>)}
         </div>
     );
 }
