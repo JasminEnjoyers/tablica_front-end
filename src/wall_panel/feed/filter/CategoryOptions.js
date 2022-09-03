@@ -24,13 +24,16 @@ export default function CategoryOptions(props){
 
 
     return(
+        <div className={styles.label}>
+            Kategoria:
         <Select id={props.id} className={styles.menu}
                 size={"small"}
                 value={kategoria}
                 >
+
             <MenuItem
                 className={styles.menuOption}
-                value=""
+                value={""}
                 onClick={()=>props.onChange("")}>...</MenuItem>
             {kategorie.map(kat =>
                 <MenuItem
@@ -41,5 +44,6 @@ export default function CategoryOptions(props){
                 >{kat.nazwa}</MenuItem>
             )}
         </Select>
+        </div>
     )
 }

@@ -27,7 +27,7 @@ export default function LastNameUpdateCard(props) {
             fetch(getApiUrl() + "user/lastName/" + "?userId="+user.id+"&newLastName="+lastName,{
                 method: "PUT"
             }).then(response => {
-                if(response.status == 200){
+                if(response.status === 200){
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.nazwisko = lastName;

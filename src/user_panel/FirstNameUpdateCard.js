@@ -27,7 +27,7 @@ export default function FirstNameUpdateCard(props) {
             fetch(getApiUrl() + "user/firstName/" + "?userId="+user.id+"&newFirstName="+firstName,{
                 method: "PUT"
             }).then(response => {
-                if(response.status == 200){
+                if(response.status === 200){
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.imie = firstName;

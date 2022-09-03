@@ -5,6 +5,8 @@ import PostStyle from "./PostStyle";
 export default function Post(props){
     const styles = PostStyle();
 
+    const {footer} = props;
+
     const {post} = props;
     const autor = post.autor;
     const tytul = post.tytul;
@@ -17,9 +19,7 @@ export default function Post(props){
         <div className={styles.post}>
             <div className={styles.postTop}>
                 <div className={styles.postUpperLeft}>
-                    <button>+</button>
                     {ocena}
-                    <button>-</button>
                 </div>
                 <div className={styles.postUpperRight}>
                     <div className={styles.postHeader}>
@@ -36,10 +36,7 @@ export default function Post(props){
 
 
             </div>
-            <div className={styles.postFooter}>
-                <button>Dodaj do obserwowanych</button>
-                <button>Zgłoś</button>
-            </div>
+            {footer}
         </div>
     );
 }

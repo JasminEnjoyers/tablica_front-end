@@ -29,10 +29,13 @@ export default function Sidebar(props) {
                 role='presentation'
             >
                 <div className={styles.btnContainer}>
-                <Button className={styles.selectButton} component={Link} to="/" variant={"contained"}>Home</Button>
+                <Button className={styles.selectButton} component={Link} to="/" variant={"contained"}>Strona główna</Button>
                 </div>
                 <div className={styles.btnContainer}>
-                <Button className={styles.selectButton} component={Link} to="/user" variant={"contained"}>user</Button>
+                <Button className={styles.selectButton} component={Link} to="/user" variant={"contained"}>Profil</Button>
+                </div>
+                <div className={styles.btnContainer}>
+                    <Button className={styles.selectButton} component={Link} to="/user/posty" variant={"contained"}>Twoje posty</Button>
                 </div>
             </Drawer>
         </div>

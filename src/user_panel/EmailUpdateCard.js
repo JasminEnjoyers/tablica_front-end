@@ -38,7 +38,7 @@ export default function EmailUpdateCard(props) {
             fetch(getApiUrl() + "user/email/" + "?userId=" + user.id + "&newEmail=" + email, {
                 method: "PUT"
             }).then(response => {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.email = email;

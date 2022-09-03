@@ -38,7 +38,7 @@ export default function PhoneUpdateCard(props) {
             fetch(getApiUrl() + "user/phone/" + "?userId=" + user.id + "&newPhone=" + phone, {
                 method: "PUT"
             }).then(response => {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.telefon = phone;

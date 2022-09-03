@@ -12,6 +12,8 @@ export default function SortOptions(props){
     ]);
 
     return(
+        <div className={styles.label}>
+            Sortuj według:
         <Select className={styles.menu}
                 size={"small"}
                 value={filtr}
@@ -24,5 +26,6 @@ export default function SortOptions(props){
                 </MenuItem>
             )}
         </Select>
+        </div>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import NewPostStyle from "./NewPostStyle";
-import {Button} from "@mui/material";
+import {Alert, Button} from "@mui/material";
 
 import CategoryOptions from "../filter/CategoryOptions";
 import getApiUrl from "../../../api/ApiUrl";
@@ -12,6 +12,9 @@ export default function NewPost(props){
     const [tytul, setTytul] = React.useState("");
     const [tekst, setTekst] = React.useState("");
     const [kategoria,setKategoria] = React.useState("");
+
+    const [showAlert, setShowAlert] = React.useState(false);
+    const [alertError, setAlertError] = React.useState(1);
 
     const [tytulError, setTytulError] = React.useState(false);
     const [tekstError, setTekstError] = React.useState(false);
@@ -26,7 +29,7 @@ export default function NewPost(props){
     }
 
     function ValidateKategoria(nazwa){
-        return nazwa==="";
+        return nazwa==="" || nazwa===null || nazwa===undefined;
     }
 
     async function ValidateKategoriaUsed(nazwa){
@@ -77,7 +80,7 @@ export default function NewPost(props){
         }
 
         if(!functionUserError && !functionKategoriaError && !functionTytulError && !functionTekstError){
-            fetch(getApiUrl() + "posty/nowy/" + user.nazwa +
+            await fetch(getApiUrl() + "posty/nowy/" + user.nazwa +
                 "/" + kategoria +
                 "/" + tytul +
                 "/" + tekst,{
@@ -86,14 +89,34 @@ export default function NewPost(props){
             }).then(response=>{
                 try{
                     response.json().then(result => {
-                        if(result.id!=null){console.log(result)}
+                        if(response.status===200){
+                            setTytul("");
+                            setTekst("");
+                            setKategoria("");
+                            setAlertError(0);
+
+                            //console.log(result)
+                            }
+                        else{
+                            setAlertError(1);
                         }
+                        setShowAlert(true);
+                    }
+
                     )
                 } catch (err){
                     console.log(err);
                 }
+
             })
         }
+        if(functionKategoriaError){
+            setAlertError(2);
+            setShowAlert(true);
+        }
+        setTimeout(() => {
+            setShowAlert(false)
+        }, 3000);
     }
 
 
@@ -105,13 +128,15 @@ export default function NewPost(props){
     }
 
     return(
-        <div className={styles.newPost}>
+        <form className={styles.newPost} onSubmit={(event)=>SubmitButtonClicked(event)}>
             <div className={styles.newPostTop}>
                 <input
                     className={styles.newPostTitleInput}
                     placeholder={"Wpisz tytuł"}
+                    required
+                    value={tytul}
                     onChange={(event)=>setTytul(event.target.value)}
-                    error={tytulError}
+                    //error={tytulError}
                     inputProps={{
                         classes:{
                             maxLength: 254,
@@ -122,8 +147,10 @@ export default function NewPost(props){
                 <input
                     className={styles.newPostInput}
                     placeholder={"podziel się czymś"}
+                    required
+                    value={tekst}
                     onChange={(event)=>setTekst(event.target.value)}
-                    error={tekstError}
+                    //error={tekstError}
                     inputProps={{
                         classes:{
                             maxLength: 1022,
@@ -134,22 +161,40 @@ export default function NewPost(props){
             </div>
             <div className={styles.newPostBottom}>
                 <div className={styles.kategoriaDrop}>
-                <CategoryOptions
-                    id="NewPostCategoryOptions"
-                    kategoria={kategoria}
-                    onChange={kategoriaChanged}
-                    error={kategoriaError}
-                />
+                    <CategoryOptions
+                        id="NewPostCategoryOptions"
+                        kategoria={kategoria}
+                        onChange={kategoriaChanged}
+                        //error={kategoriaError}
+                    />
                 </div>
                 <div className={styles.buttonDiv}>
                 <Button className={styles.shareButton}
                     variant="contained"
-                    type="submit"
-                    onClick={(event)=>SubmitButtonClicked(event)}>
+                    type="submit">
                     Udostępnij
                     </Button>
                 </div>
             </div>
-        </div>
+            {showAlert &&
+                <div>
+                    {alertError===0 &&
+                        <Alert severity="success">
+                            Pomyślnie dodano nowy post. Będzie widoczny po odświeżeniu strony.
+                        </Alert>
+                    }
+                    {alertError===1 &&
+                        <Alert severity="error">
+                            Coś poszło nie tak, spróbuj ponownie później.
+                        </Alert>
+                    }
+                    {alertError===2 &&
+                        <Alert severity="error">
+                            Należy wybrać kategorię.
+                        </Alert>
+                    }
+                </div>
+            }
+        </form>
     )
 }
