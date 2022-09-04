@@ -8,6 +8,7 @@ import getApiUrl from "../../../api/ApiUrl";
 export default function NewPost(props){
     const styles = NewPostStyle()
     const {user} = props
+    const {post} = props
 
     const [tytul, setTytul] = React.useState("");
     const [tekst, setTekst] = React.useState("");
