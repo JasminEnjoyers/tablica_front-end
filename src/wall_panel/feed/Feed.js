@@ -6,6 +6,7 @@ import FeedStyle from "./FeedStyle";
 
 export default function Feed(props){
     const styles = FeedStyle();
+    const {user} = props
 
     const [kategoria, setKategoria] = React.useState("");
     const [sortujWg, setSortujWg] = React.useState("dataDodania");
@@ -36,7 +37,7 @@ export default function Feed(props){
             </div>
 
             <div className={styles.feedSection}>
-                <PostList kategoria={kategoria} sortujWg={sortujWg}/>
+                <PostList kategoria={kategoria} sortujWg={sortujWg} user={user}/>
             </div>
         </div>
     );

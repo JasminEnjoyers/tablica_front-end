@@ -18,7 +18,7 @@ export default function WallPanel(props) {
                 </div>
 
                 <div className={styles.feedContainer}>
-                    <Feed></Feed>
+                    <Feed user={user}></Feed>
                 </div>
             </div>
         </div>

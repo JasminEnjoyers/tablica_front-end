@@ -8,6 +8,7 @@ export default function PostList(props){
     const styles = PostStyle();
     const {sortujWg} = props;
     const {kategoria} = props;
+    const {user} = props
     let posts = [];
 
     function dataSorted(posty){
@@ -32,7 +33,7 @@ export default function PostList(props){
                     .forEach(
                         (post) => document.getElementById("postListContainer")
                             .innerHTML += renderToString(
-                                <Post key={post.id} post={post}/>
+                                <Post key={post.id} post={post} user={user}/>
                         ))
             });
     }

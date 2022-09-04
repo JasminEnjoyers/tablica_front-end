@@ -18,7 +18,11 @@ export default function ReportedPost(props){
     var personId = 0;
 
     function handleDeletePost(){
-
+        fetch(getApiUrl() + "post/delete?ogloszenieId="+ogloszenieId, {
+            method: "DELETE"
+        }).then(response => {
+        })
+        document.getElementById(props.id).remove();
     }
 
     function handleLeavePost(){
