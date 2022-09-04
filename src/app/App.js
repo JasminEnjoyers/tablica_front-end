@@ -18,7 +18,7 @@ function App() {
                       <Route path="/" element={ <WallPanel user={user}/> }/>
                       <Route path="/register" element={ <WallPanel user={user}/> }/>
                       <Route path="/user" element={ <UserPanel user={user}/> }/>
-                      <Route path="/user/posty" element={ <UserPostsPanel user={user}/> }/>
+                      <Route path="/added" element={ <UserPostsPanel user={user}/> }/>
                       <Route path="/reported" element={ <ReportedPostsPanel user={user}/> }/>
                   </Routes>
               }

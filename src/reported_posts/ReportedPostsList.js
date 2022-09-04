@@ -7,12 +7,12 @@ export default function ReportedPostsList(props){
     const styles = PostStyle();
 
     const [posty, setPosty] = React.useState([]);
-    const [last, setLast] = React.useState(5);
+    const [last, setLast] = React.useState(10);
     var postId = 0;
 
 
     window.onscroll = function(ev) {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        if ((window.innerHeight + window.scrollY + 1) >= document.body.offsetHeight) {
             setLast(last+5);
         }
     };

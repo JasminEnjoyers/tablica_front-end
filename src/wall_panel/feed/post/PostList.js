@@ -150,7 +150,7 @@ export default function PostList(props){
                 //console.log(autor);
                 setPosty(posty);
             });
-    },[kategoria,autor])
+    },[kategoria,autor,user.nazwa])
 
     return(
         <div className={styles.postList} id={"postListContainer"}>
