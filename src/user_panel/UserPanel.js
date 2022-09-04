@@ -17,7 +17,7 @@ export default function UserPanel(props) {
 
     return (
         <div className={styles.userBackground}>
-            <Sidebar/>
+            <Sidebar user={user}/>
             <h3>Dane użytkownika</h3>
             <Card variant="outlined" className={styles.cardSpacing}>
 

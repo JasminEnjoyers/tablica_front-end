@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+
 import getApiUrl from "../../../api/ApiUrl";
 import Post from "./Post";
 import PostStyle from "./PostStyle";
@@ -52,7 +53,11 @@ export default function PostList(props){
 
     function handleUnfollowClicked(post){}
 
-    function handleReportClicked(post){}
+    function handleReportClicked(post){
+        fetch(getApiUrl() + "report/add?ogloszenieId="+post.id+"&uzytkownikId="+user.id, {
+            method: "PUT"
+        }).then(response => {})
+    }
 
     const showDialog = () =>{
         if(dialogType===2){
@@ -66,6 +71,7 @@ export default function PostList(props){
                 </Dialog>
             )
         }
+
         if (dialogType===1){
             return(
                 <Dialog
