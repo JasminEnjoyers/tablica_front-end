@@ -24,7 +24,6 @@ export default function PostList(props){
         return [...posty].sort((a,b) => b[sortujWg]-a[sortujWg]);
     }
 
-
     window.onscroll = function(ev) {
         if ((window.innerHeight + window.scrollY + 1) >= document.body.offsetHeight) {
             setLast(last+5);
