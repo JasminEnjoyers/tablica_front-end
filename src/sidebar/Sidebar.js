@@ -38,6 +38,9 @@ export default function Sidebar(props) {
                 <div className={styles.btnContainer}>
                     <Button className={styles.selectButton} component={Link} to="/added" variant={"contained"}>Twoje posty</Button>
                 </div>
+                <div className={styles.btnContainer}>
+                    <Button className={styles.selectButton} component={Link} to="/followed" variant={"contained"}>Obserwowane</Button>
+                </div>
                 {user.grupa === 1 &&
                     <div className={styles.btnContainer}>
                         <Button className={styles.selectButton} component={Link} to="/reported" variant={"contained"}>Zgłoszone posty</Button>

@@ -49,17 +49,41 @@ export default function PostList(props){
         
     }
 
-    function handleFollowClicked(post){}
-
-    function handleUnfollowClicked(post){}
-
-    function handleReportClicked(post){
-        fetch(getApiUrl() + "report/add?ogloszenieId="+post.id+"&uzytkownikId="+user.id, {
+    function handleFollowClicked(post){
+        fetch(getApiUrl() + "followed/add?userId="+user.id+"&postId="+post.id, {
             method: "PUT"
         }).then(response => {})
     }
 
+    function handleUnfollowClicked(post){
+
+    }
+
+    function handleReportClicked(post){
+        setEditing(post);
+        setDialogType(3);
+    }
+
+    function reportPost(post){
+        fetch(getApiUrl() + "report/add?ogloszenieId="+post.id+"&uzytkownikId="+user.id, {
+            method: "PUT"
+        }).then(response => {})
+        setDialogType(0);
+    }
+
     const showDialog = () =>{
+        if(dialogType===3){
+            return(
+                <Dialog
+                    open={true}
+                >
+                    Czy na pewno chcesz zgłosić ten post?
+                    <button onClick={()=>reportPost(editing)}>Tak</button>
+                    <button onClick={()=>setDialogType(0)}>Nie</button>
+                </Dialog>
+            )
+        }
+
         if(dialogType===2){
             return(
                 <Dialog
@@ -117,7 +141,7 @@ export default function PostList(props){
             return(
                 <div
                     className={styles.postFooter}>
-                    <button post={post} onClick={()=>handleUnfollowClicked}>Usuń z obserwowanych</button>
+                    <button post={post} onClick={()=>handleUnfollowClicked(post)}>Usuń z obserwowanych</button>
                     <button post={post} onClick={()=>handleReportClicked(post)}>Zgłoś>Zgłoś</button>
                 </div>
             )
