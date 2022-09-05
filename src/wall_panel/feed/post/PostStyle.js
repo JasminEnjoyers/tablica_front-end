@@ -81,4 +81,17 @@ export default makeStyles((theme) => ({
         width: "100%",
         height: "15%",
     },
+
+    dialogBackground:{
+        position: "fixed",
+        top: "-100vh",
+        left: "-100vw",
+        background: "rgba(37,36,36,0.51)",
+        height: "200%",
+        width: "200vw",
+    },
+
+    dialog:{
+
+    }
 }));
