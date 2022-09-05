@@ -7,6 +7,7 @@ import SideBarStyle from ".//SideBarStyle";
 export default function Sidebar(props) {
     const styles = SideBarStyle()
     const [menuIsOpen, setMenuIsOpen] = React.useState(false);
+    const {user} = props
 
     function menuButtonClick(event){
         if(menuIsOpen) setMenuIsOpen(false)
@@ -29,14 +30,19 @@ export default function Sidebar(props) {
                 role='presentation'
             >
                 <div className={styles.btnContainer}>
-                <Button className={styles.selectButton} component={Link} to="/" variant={"contained"}>Strona główna</Button>
+                    <Button className={styles.selectButton} component={Link} to="/" variant={"contained"}>Strona główna</Button>
                 </div>
                 <div className={styles.btnContainer}>
-                <Button className={styles.selectButton} component={Link} to="/user" variant={"contained"}>Profil</Button>
+                    <Button className={styles.selectButton} component={Link} to="/user" variant={"contained"}>Profil</Button>
                 </div>
                 <div className={styles.btnContainer}>
-                    <Button className={styles.selectButton} component={Link} to="/user/posty" variant={"contained"}>Twoje posty</Button>
+                    <Button className={styles.selectButton} component={Link} to="/added" variant={"contained"}>Twoje posty</Button>
                 </div>
+                {user.grupa === 1 &&
+                    <div className={styles.btnContainer}>
+                        <Button className={styles.selectButton} component={Link} to="/reported" variant={"contained"}>Zgłoszone posty</Button>
+                    </div>
+                }
             </Drawer>
         </div>
     );

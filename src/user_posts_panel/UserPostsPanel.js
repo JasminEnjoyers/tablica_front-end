@@ -11,7 +11,7 @@ export default function UserPostsPanel(props) {
 
     return (
         <div className={styles.wallBackground}>
-            <Sidebar/>
+            <Sidebar user={user}/>
             <div className={styles.feed}>
                 <div className={styles.header}>
                     Twoje ogłoszenia:

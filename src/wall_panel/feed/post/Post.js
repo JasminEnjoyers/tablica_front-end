@@ -1,5 +1,6 @@
 import React from "react";
 import PostStyle from "./PostStyle";
+import getApiUrl from "../../../api/ApiUrl";
 
 
 export default function Post(props){
@@ -8,12 +9,17 @@ export default function Post(props){
     const {footer} = props;
 
     const {post} = props;
+    const {user} = props
     const autor = post.autor;
     const tytul = post.tytul;
     const tekst = post.tekst;
     const data = post.data;
     const kategoria = post.kategoria;
     const ocena = post.ocena;
+
+    function handleReportPost(){
+
+    }
 
     return (
         <div className={styles.post}>

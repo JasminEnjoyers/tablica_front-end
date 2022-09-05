@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+
 import getApiUrl from "../../../api/ApiUrl";
 import Post from "./Post";
 import PostStyle from "./PostStyle";
@@ -52,8 +53,7 @@ export default function PostList(props){
     function handleFollowClicked(post){}
 
     function handleUnfollowClicked(post){}
-
-
+    
     function handleReportClicked(post){
         fetch(getApiUrl() + "report/add?ogloszenieId="+post.id+"&uzytkownikId="+user.id, {
             method: "PUT"
@@ -72,6 +72,7 @@ export default function PostList(props){
                 </Dialog>
             )
         }
+
         if (dialogType===1){
             return(
                 <Dialog
@@ -150,7 +151,7 @@ export default function PostList(props){
                 //console.log(autor);
                 setPosty(posty);
             });
-    },[kategoria,autor])
+    },[kategoria,autor,user.nazwa])
 
     return(
         <div className={styles.postList} id={"postListContainer"}>

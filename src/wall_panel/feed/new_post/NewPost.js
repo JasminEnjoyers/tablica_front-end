@@ -151,8 +151,6 @@ export default function NewPost(props){
 
 
     function kategoriaChanged(value){
-        //console.log("kategoriaChanged");
-        //console.log(value);
         setKategoria(value);
     }
 
