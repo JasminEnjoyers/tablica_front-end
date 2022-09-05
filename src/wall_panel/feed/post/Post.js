@@ -20,9 +20,6 @@ export default function Post(props){
     const kategoria = post.kategoria;
     const ocena = post.ocena;
 
-    function handleReportPost(){
-
-    }
 
     function handleDeleteClicked(){
         setDialogType(2);
@@ -40,17 +37,39 @@ export default function Post(props){
         setDialogType(1);
     }
 
-    function handleFollowClicked(){}
-
-    function handleUnfollowClicked(){}
-
-    function handleReportClicked(){
-        fetch(getApiUrl() + "report/add?ogloszenieId="+post.id+"&uzytkownikId="+user.id, {
+    function handleFollowClicked(){
+        fetch(getApiUrl() + "followed/add?userId="+user.id+"&postId="+post.id, {
             method: "PUT"
         }).then(response => {})
     }
 
+    function handleUnfollowClicked(){
+
+    }
+
+    function handleReportClicked(){
+        setDialogType(3);
+    }
+
+    function reportPost(){
+        fetch(getApiUrl() + "report/add?ogloszenieId="+post.id+"&uzytkownikId="+user.id, {
+            method: "PUT"
+        }).then(response => {})
+        setDialogType(0);
+    }
+
     const showDialog = () =>{
+        if(dialogType===3){
+                return(
+                    <Dialog
+                        open={true}
+                    >
+                        Czy na pewno chcesz zgłosić ten post?
+                        <button onClick={()=>reportPost()}>Tak</button>
+                        <button onClick={()=>setDialogType(0)}>Nie</button>
+                    </Dialog>
+                )
+            }
         if(dialogType===2){
             return(
                 <div className={styles.dialogBackground} onClick={()=>setDialogType(0)}>
