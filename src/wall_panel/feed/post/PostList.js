@@ -35,8 +35,12 @@ export default function PostList(props){
         setDialogType(2);
     }
 
-    function handleDelete(post){
-
+    function handleDelete(postId){
+        fetch(getApiUrl() + "post/delete?ogloszenieId="+ postId, {
+            method: "DELETE"
+        }).then(response => {
+        })
+        setDialogType(0);
     }
 
     function handleEditClicked(post){
@@ -44,15 +48,17 @@ export default function PostList(props){
         setDialogType(1);
     }
 
-    function handleEdit(post){
-        
-    }
 
     function handleFollowClicked(post){}
 
     function handleUnfollowClicked(post){}
 
-    function handleReportClicked(post){}
+
+    function handleReportClicked(post){
+        fetch(getApiUrl() + "report/add?ogloszenieId="+post.id+"&uzytkownikId="+user.id, {
+            method: "PUT"
+        }).then(response => {})
+    }
 
     const showDialog = () =>{
         if(dialogType===2){
@@ -61,7 +67,7 @@ export default function PostList(props){
                     open={true}
                 >
                     Czy na pewno chcesz usunąć ten post?
-                    <button onClick={()=>handleDelete(editing)}>Tak</button>
+                    <button onClick={()=>handleDelete(editing.id)}>Tak</button>
                     <button onClick={()=>setDialogType(0)}>Nie</button>
                 </Dialog>
             )
@@ -72,10 +78,10 @@ export default function PostList(props){
                     open={true}>
                     Edycja postu
                     <NewPost
-                        user={user}>
-
+                        onClick={()=>setDialogType(0)}
+                        user = {user}
+                        post = {editing}>
                     </NewPost>
-                    <button onClick={()=>handleEdit(editing)}>Zatwierdź</button>
                     <button onClick={()=>setDialogType(0)}>Anuluj</button>
                 </Dialog>
             )
