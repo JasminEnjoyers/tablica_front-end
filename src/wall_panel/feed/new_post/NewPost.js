@@ -116,7 +116,8 @@ export default function NewPost(props){
                     "/" + kategoria +
                     "/" + tytul +
                     "/" + tekst, {
-                    method: "PUT"
+                    method: "PUT",
+                    credentials: "include"
                 }).then(response => {
                     try {
                         response.json().then(result => {
@@ -199,7 +200,7 @@ export default function NewPost(props){
                 <Button className={styles.shareButton}
                     variant="contained"
                     type="submit"
-                    onClick={()=>props.onClick}>
+                    onClick={()=>props.onClick()}>
                     Udostępnij
                     </Button>
                 </div>
