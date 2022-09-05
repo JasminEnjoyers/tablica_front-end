@@ -50,7 +50,7 @@ export default function PasswordUpdateCard(props) {
     async function updatePassword(event) {
         event.preventDefault();
         if (!ValidatePassword(password) || !(await ValidatePasswordUsed(password)) || !ValidateNewPassword(newPassword, newPassword2)) {
-            setError(true);
+
         } else {
             setError(false);
             fetch(getApiUrl() + "user/password/?userId=" + user.id + "&newPassword=" + newPassword, {
