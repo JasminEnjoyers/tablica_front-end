@@ -1,15 +1,18 @@
 import React from "react";
 import PostStyle from "./PostStyle";
 import getApiUrl from "../../../api/ApiUrl";
+import {Dialog} from "@mui/material";
+import NewPost from "../new_post/NewPost";
 
 
 export default function Post(props){
     const styles = PostStyle();
 
-    const {footer} = props;
+    const [dialogType, setDialogType] = React.useState(0);
 
+    const {user} = props;
     const {post} = props;
-    const {user} = props
+
     const autor = post.autor;
     const tytul = post.tytul;
     const tekst = post.tekst;
@@ -19,6 +22,102 @@ export default function Post(props){
 
     function handleReportPost(){
 
+    }
+
+    function handleDeleteClicked(){
+        setDialogType(2);
+    }
+
+    function handleDelete(){
+        fetch(getApiUrl() + "post/delete?ogloszenieId="+ post.id, {
+            method: "DELETE"
+        }).then(response => {
+        })
+        setDialogType(0);
+    }
+
+    function handleEditClicked(){
+        setDialogType(1);
+    }
+
+    function handleFollowClicked(){}
+
+    function handleUnfollowClicked(){}
+
+    function handleReportClicked(){
+        fetch(getApiUrl() + "report/add?ogloszenieId="+post.id+"&uzytkownikId="+user.id, {
+            method: "PUT"
+        }).then(response => {})
+    }
+
+    const showDialog = () =>{
+        if(dialogType===2){
+            return(
+                <div className={styles.dialogBackground} onClick={()=>setDialogType(0)}>
+                    <Dialog
+                        open={true}
+                    >
+                        Czy na pewno chcesz usunąć ten post?
+                        <button onClick={()=>handleDelete(post.id)}>Tak</button>
+                        <button onClick={()=>setDialogType(0)}>Nie</button>
+                    </Dialog>
+                </div>
+            )
+        }
+
+        if (dialogType===1){
+            return(
+                <div className={styles.dialogBackground} onClick={()=>setDialogType(0)}>
+                    <Dialog
+                        open={true}>
+                        Edycja postu
+                        <NewPost
+                            onClick={()=>{
+                                setTimeout(() => {
+                                    setDialogType(0);
+                                }, 2000);
+                            }}
+                            user = {user}
+                            post = {post}>
+                        </NewPost>
+                        <button onClick={()=>setDialogType(0)}>Anuluj</button>
+                    </Dialog>
+                </div>
+            )
+        }
+    }
+
+    function viewingType(){
+        if(autor===user.nazwa) return 1;
+        return 0;
+    }
+
+    const PostFooter = () =>{
+        var view = viewingType();
+        if (view === 0)
+            return(
+                <div
+                    className={styles.postFooter}>
+                    <button onClick={()=>handleFollowClicked()}>Dodaj do obserwowanych</button>
+                    <button onClick={()=>handleReportClicked()}>Zgłoś</button>
+                </div>
+            )
+        if (view === 1)
+            return (
+                <div
+                    className={styles.postFooter}>
+                    <button onClick={(event)=>handleEditClicked()}>Edytuj</button>
+                    <button onClick={(event)=>handleDeleteClicked()}>Usuń</button>
+                </div>
+            )
+        if (view === 2)
+            return(
+                <div
+                    className={styles.postFooter}>
+                    <button onClick={()=>handleUnfollowClicked()}>Usuń z obserwowanych</button>
+                    <button onClick={()=>handleReportClicked()}>Zgłoś>Zgłoś</button>
+                </div>
+            )
     }
 
     return (
@@ -42,7 +141,8 @@ export default function Post(props){
 
 
             </div>
-            {footer}
+            {PostFooter()}
+            {showDialog()}
         </div>
     );
 }

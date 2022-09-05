@@ -28,7 +28,8 @@ export default function ReportedPostsList(props){
 
     return(
         <div className={styles.postList} id={"postListContainer"}>
-            {posty.slice(0,last).map(post => <ReportedPost key={post.id} post={post} id={postId++}/>)}
+            {posty.slice(0,last).map(post => <ReportedPost key={"" + post.id + postId} post={post} id={postId++}/>)}
         </div>
     );
 }
+

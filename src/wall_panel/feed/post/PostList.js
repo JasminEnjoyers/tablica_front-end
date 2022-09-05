@@ -14,137 +14,14 @@ export default function PostList(props){
     const {kategoria} = props;
     const {autor} = props;
 
-    const [dialogType, setDialogType] = React.useState(0);
-    const [editing, setEditing] = React.useState({});
-
     const [posty, setPosty] = React.useState([]);
     const [last, setLast] = React.useState(10);
-
 
     function dataSorted(posty){
         return [...posty].sort((a,b) => (new Date(b.data).getTime()) - (new Date(a.data).getTime()));
     }
     function sorted(posty){
         return [...posty].sort((a,b) => b[sortujWg]-a[sortujWg]);
-    }
-
-
-
-
-    function handleDeleteClicked(post){
-        setEditing(post);
-        setDialogType(2);
-    }
-
-    function handleDelete(post){
-
-    }
-
-    function handleEditClicked(post){
-        setEditing(post);
-        setDialogType(1);
-    }
-
-    function handleEdit(post){
-        
-    }
-
-    function handleFollowClicked(post){
-        fetch(getApiUrl() + "followed/add?userId="+user.id+"&postId="+post.id, {
-            method: "PUT"
-        }).then(response => {})
-    }
-
-    function handleUnfollowClicked(post){
-
-    }
-
-    function handleReportClicked(post){
-        setEditing(post);
-        setDialogType(3);
-    }
-
-    function reportPost(post){
-        fetch(getApiUrl() + "report/add?ogloszenieId="+post.id+"&uzytkownikId="+user.id, {
-            method: "PUT"
-        }).then(response => {})
-        setDialogType(0);
-    }
-
-    const showDialog = () =>{
-        if(dialogType===3){
-            return(
-                <Dialog
-                    open={true}
-                >
-                    Czy na pewno chcesz zgłosić ten post?
-                    <button onClick={()=>reportPost(editing)}>Tak</button>
-                    <button onClick={()=>setDialogType(0)}>Nie</button>
-                </Dialog>
-            )
-        }
-
-        if(dialogType===2){
-            return(
-                <Dialog
-                    open={true}
-                >
-                    Czy na pewno chcesz usunąć ten post?
-                    <button onClick={()=>handleDelete(editing)}>Tak</button>
-                    <button onClick={()=>setDialogType(0)}>Nie</button>
-                </Dialog>
-            )
-        }
-
-        if (dialogType===1){
-            return(
-                <Dialog
-                    open={true}>
-                    Edycja postu
-                    <NewPost
-                        user={user}>
-
-                    </NewPost>
-                    <button onClick={()=>handleEdit(editing)}>Zatwierdź</button>
-                    <button onClick={()=>setDialogType(0)}>Anuluj</button>
-                </Dialog>
-            )
-        }
-        else
-            return
-    }
-
-    function viewingType(post){
-        if(post.autor===user.nazwa) return 1;
-        return 0;
-    }
-
-    const PostFooter = (post) =>{
-        var view = viewingType(post);
-        if (view === 0)
-            return(
-                <div
-                    className={styles.postFooter}>
-                    <button post={post} onClick={()=>handleFollowClicked(post)}>Dodaj do obserwowanych</button>
-                    <button post={post} onClick={()=>handleReportClicked(post)}>Zgłoś</button>
-                </div>
-            )
-        if (view === 1)
-            return (
-                <div
-                    className={styles.postFooter}>
-                    <button post={post} onClick={(event)=>handleEditClicked(post)}>Edytuj</button>
-                    <button post={post} onClick={(event)=>handleDeleteClicked(post)}>Usuń</button>
-                </div>
-            )
-        if (view === 2)
-            return(
-                <div
-                    className={styles.postFooter}>
-                    <button post={post} onClick={()=>handleUnfollowClicked(post)}>Usuń z obserwowanych</button>
-                    <button post={post} onClick={()=>handleReportClicked(post)}>Zgłoś>Zgłoś</button>
-                </div>
-            )
     }
 
     window.onscroll = function(ev) {
@@ -182,9 +59,9 @@ export default function PostList(props){
                 .slice(0,last)
                 .map(post =>
                     <Post
+                        user={user}
                         key={post.id}
-                        post={post}
-                        footer={PostFooter(post)}/>
+                        post={post}/>
                 )
             }
 
@@ -197,8 +74,6 @@ export default function PostList(props){
                     Trwa wczytywanie...
                 </div>
             )}
-
-            {showDialog()}
         </div>
     );
 }

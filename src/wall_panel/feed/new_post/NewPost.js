@@ -10,9 +10,9 @@ export default function NewPost(props){
     const {user} = props
     const {post} = props
 
-    const [tytul, setTytul] = React.useState("");
-    const [tekst, setTekst] = React.useState("");
-    const [kategoria,setKategoria] = React.useState("");
+    const [tytul, setTytul] = React.useState(post.tytul);
+    const [tekst, setTekst] = React.useState(post.tekst)
+    const [kategoria,setKategoria] = React.useState(post.kategoria);
 
     const [showAlert, setShowAlert] = React.useState(false);
     const [alertError, setAlertError] = React.useState(1);
@@ -80,36 +80,66 @@ export default function NewPost(props){
             functionUserError = true;
         }
 
-        if(!functionUserError && !functionKategoriaError && !functionTytulError && !functionTekstError){
-            await fetch(getApiUrl() + "posty/nowy/" + user.nazwa +
-                "/" + kategoria +
-                "/" + tytul +
-                "/" + tekst,{
-                method: "POST",
-                credentials: "include"
-            }).then(response=>{
-                try{
-                    response.json().then(result => {
-                        if(response.status===200){
-                            setTytul("");
-                            setTekst("");
-                            setKategoria("");
-                            setAlertError(0);
+        if(!functionUserError && !functionKategoriaError && !functionTytulError && !functionTekstError) {
+            if (post.id == null){
+                await fetch(getApiUrl() + "posty/nowy/" + user.nazwa +
+                    "/" + kategoria +
+                    "/" + tytul +
+                    "/" + tekst, {
+                    method: "POST",
+                    credentials: "include"
+                }).then(response => {
+                    try {
+                        response.json().then(result => {
+                                if (response.status === 200) {
+                                    setTytul("");
+                                    setTekst("");
+                                    setKategoria("");
+                                    setAlertError(0);
 
-                            //console.log(result)
+                                    //console.log(result)
+                                } else {
+                                    setAlertError(1);
+                                }
+                                setShowAlert(true);
                             }
-                        else{
-                            setAlertError(1);
-                        }
-                        setShowAlert(true);
+                        )
+                    } catch (err) {
+                        console.log(err);
                     }
 
-                    )
-                } catch (err){
-                    console.log(err);
-                }
+                })
+            }
+            else{
+                await fetch(getApiUrl() + "posty/edytuj/" + post.id +
+                    "/" + user.nazwa +
+                    "/" + kategoria +
+                    "/" + tytul +
+                    "/" + tekst, {
+                    method: "PUT",
+                    credentials: "include"
+                }).then(response => {
+                    try {
+                        response.json().then(result => {
+                                if (response.status === 200) {
+                                    setTytul("");
+                                    setTekst("");
+                                    setKategoria("");
+                                    setAlertError(0);
 
-            })
+                                    //console.log(result)
+                                } else {
+                                    setAlertError(1);
+                                }
+                                setShowAlert(true);
+                            }
+                        )
+                    } catch (err) {
+                        console.log(err);
+                    }
+
+                })
+            }
         }
         if(functionKategoriaError){
             setAlertError(2);
@@ -123,7 +153,6 @@ export default function NewPost(props){
 
     function kategoriaChanged(value){
         setKategoria(value);
-
     }
 
     return(
@@ -135,13 +164,13 @@ export default function NewPost(props){
                     required
                     value={tytul}
                     onChange={(event)=>setTytul(event.target.value)}
-                    //error={tytulError}
+                    /*error={tytulError}
                     inputProps={{
                         classes:{
                             maxLength: 254,
                         }
                     }}
-                    //value={post}
+                    *///value={post}
                 />
                 <input
                     className={styles.newPostInput}
@@ -149,13 +178,13 @@ export default function NewPost(props){
                     required
                     value={tekst}
                     onChange={(event)=>setTekst(event.target.value)}
-                    //error={tekstError}
+                    /*error={tekstError}
                     inputProps={{
                         classes:{
                             maxLength: 1022,
                         }
                     }}
-                    //value={post}
+                    *///value={post}
                 />
             </div>
             <div className={styles.newPostBottom}>
@@ -170,7 +199,8 @@ export default function NewPost(props){
                 <div className={styles.buttonDiv}>
                 <Button className={styles.shareButton}
                     variant="contained"
-                    type="submit">
+                    type="submit"
+                    onClick={()=>props.onClick()}>
                     Udostępnij
                     </Button>
                 </div>
