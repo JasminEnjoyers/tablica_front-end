@@ -19,6 +19,7 @@ export default function Post(props){
     const data = post.data;
     const kategoria = post.kategoria;
     const ocena = post.ocena;
+    const [obserwuje, setObserwuje] = React.useState(post.obserwuje);
 
 
     function handleDeleteClicked(){
@@ -38,13 +39,17 @@ export default function Post(props){
     }
 
     function handleFollowClicked(){
+        setObserwuje(true);
         fetch(getApiUrl() + "followed/add?userId="+user.id+"&postId="+post.id, {
             method: "PUT"
         }).then(response => {})
     }
 
     function handleUnfollowClicked(){
-
+        setObserwuje(false);
+        fetch(getApiUrl() + "followed/delete?userId="+user.id+"&postId="+post.id, {
+            method: "DELETE"
+        }).then(response => {})
     }
 
     function handleReportClicked(){
@@ -102,6 +107,7 @@ export default function Post(props){
 
     function viewingType(){
         if(autor===user.nazwa) return 1;
+        if(obserwuje) return 2;
         return 0;
     }
 
@@ -128,7 +134,7 @@ export default function Post(props){
                 <div
                     className={styles.postFooter}>
                     <button onClick={()=>handleUnfollowClicked()}>Usuń z obserwowanych</button>
-                    <button onClick={()=>handleReportClicked()}>Zgłoś>Zgłoś</button>
+                    <button onClick={()=>handleReportClicked()}>Zgłoś</button>
                 </div>
             )
     }

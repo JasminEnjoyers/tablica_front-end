@@ -35,14 +35,16 @@ export default function PostList(props){
         //console.log(autor);
         //console.log(kategoria);
         if(autor!==user.nazwa) {
-            url = url + "/kategoria"
+            url += "/kategoria?"
             if (kategoria !== "") {
-                url = url + "?kategoria=" + kategoria;
+                url += "kategoria=" + kategoria +"&";
             }
+            url+= "uzytkownik=" + user.nazwa;
         }
         else{
-            url = url + "/autor?autor=" + autor;
+            url += "/autor?autor=" + autor;
         }
+        console.log(url);
         fetch(url, {method:"GET",credentials:"include"})
             .then(response => response.json())
             .then(posty => {
