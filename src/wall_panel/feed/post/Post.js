@@ -62,8 +62,7 @@ export default function Post(props){
         if(dialogType===3){
                 return(
                     <Dialog
-                        open={true}
-                    >
+                        open={true}>
                         Czy na pewno chcesz zgłosić ten post?
                         <button onClick={()=>reportPost()}>Tak</button>
                         <button onClick={()=>setDialogType(0)}>Nie</button>
@@ -72,21 +71,17 @@ export default function Post(props){
             }
         if(dialogType===2){
             return(
-                <div className={styles.dialogBackground} onClick={()=>setDialogType(0)}>
                     <Dialog
-                        open={true}
-                    >
+                        open={true}>
                         Czy na pewno chcesz usunąć ten post?
                         <button onClick={()=>handleDelete(post.id)}>Tak</button>
                         <button onClick={()=>setDialogType(0)}>Nie</button>
                     </Dialog>
-                </div>
             )
         }
 
         if (dialogType===1){
             return(
-                <div className={styles.dialogBackground} onClick={()=>setDialogType(0)}>
                     <Dialog
                         open={true}>
                         Edycja postu
@@ -101,7 +96,6 @@ export default function Post(props){
                         </NewPost>
                         <button onClick={()=>setDialogType(0)}>Anuluj</button>
                     </Dialog>
-                </div>
             )
         }
     }

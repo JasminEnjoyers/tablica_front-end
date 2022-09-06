@@ -200,7 +200,7 @@ export default function NewPost(props){
                 <Button className={styles.shareButton}
                     variant="contained"
                     type="submit"
-                    onClick={()=>props.onClick()}>
+                    onClick={()=>{if(post.id!==null){props.onClick();}}}>
                     Udostępnij
                     </Button>
                 </div>
