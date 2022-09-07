@@ -40,6 +40,7 @@ export default function LoginUpdateCard(props) {
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.nazwa = login;
+                    props.setLogin(login);
                 } else {
                     setErrorAlert(true);
                     setShowAlert(true);

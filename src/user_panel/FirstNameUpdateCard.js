@@ -31,6 +31,7 @@ export default function FirstNameUpdateCard(props) {
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.imie = firstName;
+                    props.setImie(firstName);
                 }
                 else{
                     setErrorAlert(true);

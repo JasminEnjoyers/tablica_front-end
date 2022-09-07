@@ -44,7 +44,7 @@ export default function PostList(props){
         else{
             url += "/autor?autor=" + autor;
         }
-        console.log(url);
+        //console.log(url);
         fetch(url, {method:"GET",credentials:"include"})
             .then(response => response.json())
             .then(posty => {

@@ -1,7 +1,7 @@
 import React from "react";
 import PostStyle from "./PostStyle";
 import getApiUrl from "../../../api/ApiUrl";
-import {Dialog} from "@mui/material";
+import {Button, Dialog} from "@mui/material";
 import NewPost from "../new_post/NewPost";
 
 
@@ -18,7 +18,6 @@ export default function Post(props){
     const tekst = post.tekst;
     const data = post.data;
     const kategoria = post.kategoria;
-    const ocena = post.ocena;
     const [obserwuje, setObserwuje] = React.useState(post.obserwuje);
 
 
@@ -66,28 +65,28 @@ export default function Post(props){
     const showDialog = () =>{
         if(dialogType===3){
                 return(
-                    <Dialog
+                    <Dialog onClose={()=>setDialogType(0)}
                         open={true}>
                         Czy na pewno chcesz zgłosić ten post?
-                        <button onClick={()=>reportPost()}>Tak</button>
-                        <button onClick={()=>setDialogType(0)}>Nie</button>
+                        <Button onClick={()=>reportPost()}>Tak</Button>
+                        <Button onClick={()=>setDialogType(0)}>Nie</Button>
                     </Dialog>
                 )
             }
         if(dialogType===2){
             return(
-                    <Dialog
+                    <Dialog onClose={()=>setDialogType(0)}
                         open={true}>
                         Czy na pewno chcesz usunąć ten post?
-                        <button onClick={()=>handleDelete(post.id)}>Tak</button>
-                        <button onClick={()=>setDialogType(0)}>Nie</button>
+                        <Button onClick={()=>handleDelete(post.id)}>Tak</Button>
+                        <Button onClick={()=>setDialogType(0)}>Nie</Button>
                     </Dialog>
             )
         }
 
         if (dialogType===1){
             return(
-                    <Dialog
+                    <Dialog onClose={()=>setDialogType(0)}
                         open={true}>
                         Edycja postu
                         <NewPost
@@ -99,7 +98,7 @@ export default function Post(props){
                             user = {user}
                             post = {post}>
                         </NewPost>
-                        <button onClick={()=>setDialogType(0)}>Anuluj</button>
+                        <Button onClick={()=>setDialogType(0)}>Anuluj</Button>
                     </Dialog>
             )
         }
@@ -117,24 +116,24 @@ export default function Post(props){
             return(
                 <div
                     className={styles.postFooter}>
-                    <button onClick={()=>handleFollowClicked()}>Dodaj do obserwowanych</button>
-                    <button onClick={()=>handleReportClicked()}>Zgłoś</button>
+                    <Button onClick={()=>handleFollowClicked()}>Dodaj do obserwowanych</Button>
+                    <Button onClick={()=>handleReportClicked()}>Zgłoś</Button>
                 </div>
             )
         if (view === 1)
             return (
                 <div
                     className={styles.postFooter}>
-                    <button onClick={(event)=>handleEditClicked()}>Edytuj</button>
-                    <button onClick={(event)=>handleDeleteClicked()}>Usuń</button>
+                    <Button onClick={(event)=>handleEditClicked()}>Edytuj</Button>
+                    <Button onClick={(event)=>handleDeleteClicked()}>Usuń</Button>
                 </div>
             )
         if (view === 2)
             return(
                 <div
                     className={styles.postFooter}>
-                    <button onClick={()=>handleUnfollowClicked()}>Usuń z obserwowanych</button>
-                    <button onClick={()=>handleReportClicked()}>Zgłoś</button>
+                    <Button onClick={()=>handleUnfollowClicked()}>Usuń z obserwowanych</Button>
+                    <Button onClick={()=>handleReportClicked()}>Zgłoś</Button>
                 </div>
             )
     }
@@ -142,23 +141,16 @@ export default function Post(props){
     return (
         <div className={styles.post}>
             <div className={styles.postTop}>
-                <div className={styles.postUpperLeft}>
-                    {ocena}
+                <div className={styles.postHeader}>
+                    <div className={styles.postHeaderTileL}>{autor}</div>
+                    <div className={styles.postHeaderTileR}>{data}</div>
+
                 </div>
-                <div className={styles.postUpperRight}>
-                    <div className={styles.postHeader}>
-                        <div className={styles.postHeaderTileL}>{autor}</div>
-                        <div className={styles.postHeaderTileR}>{data}</div>
-
-                    </div>
-                    <div className={styles.postHeader}>
-                        <div className={styles.postHeaderTileL}>{tytul}</div>
-                        <div className={styles.postHeaderTileR}>{kategoria}</div>
-                    </div>
-                    <div className={styles.postMain}>{tekst}</div>
+                <div className={styles.postHeader}>
+                    <div className={styles.postHeaderTileL}>{tytul}</div>
+                    <div className={styles.postHeaderTileR}>{kategoria}</div>
                 </div>
-
-
+                <div className={styles.postMain}>{tekst}</div>
             </div>
             {PostFooter()}
             {showDialog()}

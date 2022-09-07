@@ -11,6 +11,11 @@ export default function SortOptions(props){
         "ocena"
     ]);
 
+    const [etykiety] = React.useState([
+        "Data dodania",
+        "Ocena"
+    ])
+
     return(
         <div className={styles.label}>
             Sortuj według:
@@ -22,7 +27,7 @@ export default function SortOptions(props){
                 <MenuItem
                     className={styles.menuOption}
                     key = {filtry.indexOf(filtr)}
-                    value = {filtr}>{filtr}
+                    value = {filtr}>{etykiety[filtry.indexOf(filtr)]}
                 </MenuItem>
             )}
         </Select>
