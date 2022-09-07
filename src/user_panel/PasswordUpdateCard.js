@@ -49,7 +49,12 @@ export default function PasswordUpdateCard(props) {
 
     async function updatePassword(event) {
         event.preventDefault();
-        if (!ValidatePassword(password) || !(await ValidatePasswordUsed(password)) || !ValidateNewPassword(newPassword, newPassword2)) {
+
+        var val1 = ValidatePassword(password);
+        var val2 = (await ValidatePasswordUsed(password));
+        var val3 = ValidateNewPassword(newPassword, newPassword2);
+
+        if (!val1 || !val2 || !val3) {
 
         } else {
             setError(false);
