@@ -9,7 +9,7 @@ export default function Feed(props){
     const {user} = props
 
     const [kategoria, setKategoria] = React.useState("");
-    const [sortujWg, setSortujWg] = React.useState("dataDodania");
+    const [sortujWg, setSortujWg] = React.useState("Od najnowszych");
 
     function kategoriaChanged(value){
         //console.log("kategoriaChanged");

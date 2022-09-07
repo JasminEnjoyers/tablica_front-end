@@ -45,26 +45,22 @@ export default function ReportedPost(props){
         }
     }
 
-    function handleDeletePost(){
-        fetch(getApiUrl() + "post/delete?ogloszenieId="+ogloszenieId, {
+    async function handleDeletePost(){
+        await fetch(getApiUrl() + "post/delete?ogloszenieId="+ogloszenieId, {
             method: "DELETE"
         }).then(response => {
         })
         document.getElementById(props.id).remove();
-        setTimeout(() => {
-            setDialogType(0);
-        }, 1000);
+        setDialogType(0);
     }
 
-    function handleLeavePost(){
-        fetch(getApiUrl() + "reported/leave?ogloszenieId="+ogloszenieId, {
+    async function handleLeavePost(){
+        await fetch(getApiUrl() + "reported/leave?ogloszenieId="+ogloszenieId, {
             method: "DELETE"
         }).then(response => {
         })
         document.getElementById(props.id).remove();
-        setTimeout(() => {
-            setDialogType(0);
-        }, 1000);
+        setDialogType(0);
     }
 
     return (

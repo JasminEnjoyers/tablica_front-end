@@ -3,8 +3,7 @@ import React, {useEffect} from "react";
 import getApiUrl from "../../../api/ApiUrl";
 import Post from "./Post";
 import PostStyle from "./PostStyle";
-import {Dialog} from "@mui/material";
-import NewPost from "../new_post/NewPost";
+
 
 export default function PostList(props){
     const styles = PostStyle();
@@ -17,11 +16,11 @@ export default function PostList(props){
     const [posty, setPosty] = React.useState([]);
     const [last, setLast] = React.useState(10);
 
-    function dataSorted(posty){
+    function sorted1(posty){
         return [...posty].sort((a,b) => (new Date(b.data).getTime()) - (new Date(a.data).getTime()));
     }
-    function sorted(posty){
-        return [...posty].sort((a,b) => b[sortujWg]-a[sortujWg]);
+    function sorted2(posty){
+        return [...posty].sort((a,b) => (new Date(a.data).getTime()) - (new Date(b.data).getTime()));
     }
 
     window.onscroll = function(ev) {
@@ -57,7 +56,7 @@ export default function PostList(props){
 
     return(
         <div className={styles.postList} id={"postListContainer"}>
-            {((sortujWg==="dataDodania")?dataSorted(posty):sorted(posty))
+            {((sortujWg==="Od najnowszych")?sorted1(posty):sorted2(posty))
                 .slice(0,last)
                 .map(post =>
                     <Post

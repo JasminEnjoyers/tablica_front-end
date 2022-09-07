@@ -25,8 +25,8 @@ export default function Post(props){
         setDialogType(2);
     }
 
-    function handleDelete(){
-        fetch(getApiUrl() + "post/delete?ogloszenieId="+ post.id, {
+    async function handleDelete(){
+        await fetch(getApiUrl() + "post/delete?ogloszenieId="+ post.id, {
             method: "DELETE"
         }).then(response => {
         })
@@ -55,8 +55,8 @@ export default function Post(props){
         setDialogType(3);
     }
 
-    function reportPost(){
-        fetch(getApiUrl() + "report/add?ogloszenieId="+post.id+"&uzytkownikId="+user.id, {
+    async function reportPost(){
+        await fetch(getApiUrl() + "report/add?ogloszenieId="+post.id+"&uzytkownikId="+user.id, {
             method: "PUT"
         }).then(response => {})
         setDialogType(0);
@@ -142,8 +142,8 @@ export default function Post(props){
         <div className={styles.post}>
             <div className={styles.postTop}>
                 <div className={styles.postHeader}>
-                    <div className={styles.postHeaderTileL}>{autor}</div>
-                    <div className={styles.postHeaderTileR}>{data}</div>
+                    <div className={styles.postHeaderTileL}>Autor: {autor}</div>
+                    <div className={styles.postHeaderTileR}>Dodano: {data}</div>
 
                 </div>
                 <div className={styles.postHeader}>
