@@ -42,6 +42,7 @@ export default function EmailUpdateCard(props) {
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.email = email;
+                    props.setEmail(email);
                 } else {
                     setErrorAlert(true);
                     setShowAlert(true);

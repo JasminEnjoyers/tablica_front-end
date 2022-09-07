@@ -14,6 +14,11 @@ export default function UserPanel(props) {
 
     const styles = UserPanelStyle()
     const {user} = props
+    const [email, setEmail] = React.useState(user.email)
+    const [telefon, setTelefon] = React.useState(user.telefon)
+    const [imie, setImie] = React.useState(user.imie)
+    const [nazwisko, setNazwisko] = React.useState(user.nazwisko)
+    const [login, setLogin] = React.useState(user.nazwa)
 
     return (
         <div className={styles.userBackground}>
@@ -22,20 +27,19 @@ export default function UserPanel(props) {
             <Card variant="outlined" className={styles.cardSpacing}>
 
                 <CardContent className={styles.cardContentElements}>
-                    <div>email: {user.email}</div>
-                    <div>telefon: {user.telefon}</div>
-                    <div>reputacja: {user.reputacja}</div>
-                    <div>imie: {user.imie}</div>
-                    <div>nazwisko: {user.nazwisko}</div>
-                    <div>login: {user.nazwa}</div>
+                    <div>email: {email}</div>
+                    <div>telefon: {telefon}</div>
+                    <div>imie: {imie}</div>
+                    <div>nazwisko: {nazwisko}</div>
+                    <div>login: {login}</div>
                 </CardContent>
             </Card>
 
-            <EmailUpdateCard user={user}/>
-            <PhoneUpdateCard user={user}/>
-            <FirstNameUpdateCard user={user}/>
-            <LastNameUpdateCard user={user}/>
-            <LoginUpdateCard user={user}/>
+            <EmailUpdateCard user={user} setEmail={setEmail}/>
+            <PhoneUpdateCard user={user} setTelefon={setTelefon}/>
+            <FirstNameUpdateCard user={user} setImie={setImie}/>
+            <LastNameUpdateCard user={user} setNazwisko={setNazwisko}/>
+            <LoginUpdateCard user={user} setLogin={setLogin}/>
             <PasswordUpdateCard user={user}/>
 
         </div>

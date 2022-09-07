@@ -1,6 +1,7 @@
 import React from "react";
 import PostStyle from "../wall_panel/feed/post/PostStyle";
 import getApiUrl from "../api/ApiUrl";
+import {Button, Dialog} from "@mui/material";
 
 
 export default function ReportedPost(props){
@@ -12,25 +13,54 @@ export default function ReportedPost(props){
     const tekst = post.tekst;
     const data = post.data;
     const kategoria = post.kategoria;
-    const ocena = post.ocena;
     const osobyZglaszajace = post.osobyZglaszajace;
     const ogloszenieId = post.ogloszenieId;
+
+    const [dialogType, setDialogType] = React.useState(0);
+
     var personId = 0;
 
-    function handleDeletePost(){
-        fetch(getApiUrl() + "post/delete?ogloszenieId="+ogloszenieId, {
-            method: "DELETE"
-        }).then(response => {
-        })
-        document.getElementById(props.id).remove();
+    function showDialog(){
+        if(dialogType===2){
+            return(
+                <Dialog
+                    onClose={()=>setDialogType(0)}
+                    open={true}>
+                    Czy napewno chcesz zachować ten post i zignorować dotyczące go zgłoszenia?
+                    <Button onClick={()=>handleLeavePost()}>Tak</Button>
+                    <Button onClick={()=>setDialogType(0)}>Nie</Button>
+                </Dialog>
+            )
+        }
+        if(dialogType===1){
+            return(
+                <Dialog
+                    onClose={()=>setDialogType(0)}
+                    open={true}>
+                    Czy napewno chcesz usunąć ten post?
+                    <Button onClick={()=>handleDeletePost()}>Tak</Button>
+                    <Button onClick={()=>setDialogType(0)}>Nie</Button>
+                </Dialog>
+            )
+        }
     }
 
-    function handleLeavePost(){
-        fetch(getApiUrl() + "reported/leave?ogloszenieId="+ogloszenieId, {
+    async function handleDeletePost(){
+        await fetch(getApiUrl() + "post/delete?ogloszenieId="+ogloszenieId, {
             method: "DELETE"
         }).then(response => {
         })
         document.getElementById(props.id).remove();
+        setDialogType(0);
+    }
+
+    async function handleLeavePost(){
+        await fetch(getApiUrl() + "reported/leave?ogloszenieId="+ogloszenieId, {
+            method: "DELETE"
+        }).then(response => {
+        })
+        document.getElementById(props.id).remove();
+        setDialogType(0);
     }
 
     return (
@@ -39,30 +69,22 @@ export default function ReportedPost(props){
                 <div>
                     {osobyZglaszajace.map(person => <div key={personId++}>{person}</div>)}
                 </div>
-                <div className={styles.postUpperLeft}>
-                    <button>+</button>
-                    {ocena}
-                    <button>-</button>
+
+                <div className={styles.postHeader}>
+                    <div className={styles.postHeaderTileL}>{autor}</div>
+                    <div className={styles.postHeaderTileR}>{data}</div>
                 </div>
-                <div className={styles.postUpperRight}>
-                    <div className={styles.postHeader}>
-                        <div className={styles.postHeaderTileL}>{autor}</div>
-                        <div className={styles.postHeaderTileR}>{data}</div>
-
-                    </div>
-                    <div className={styles.postHeader}>
-                        <div className={styles.postHeaderTileL}>{tytul}</div>
-                        <div className={styles.postHeaderTileR}>{kategoria}</div>
-                    </div>
-                    <div className={styles.postMain}>{tekst}</div>
+                <div className={styles.postHeader}>
+                    <div className={styles.postHeaderTileL}>{tytul}</div>
+                    <div className={styles.postHeaderTileR}>{kategoria}</div>
                 </div>
-
-
+                <div className={styles.postMain}>{tekst}</div>
             </div>
             <div className={styles.postFooter}>
-                <button onClick={handleDeletePost}>Usuń post</button>
-                <button onClick={handleLeavePost}>Zostaw</button>
+                <Button onClick={()=>setDialogType(1)}>Usuń post</Button>
+                <Button onClick={()=>setDialogType(2)}>Zostaw</Button>
             </div>
+            {showDialog()}
         </div>
     );
 }

@@ -7,8 +7,8 @@ export default function SortOptions(props){
 
     const {filtr} = props;
     const [filtry] = React.useState([
-        "dataDodania",
-        "ocena"
+        "Od najnowszych",
+        "Od najstarszych"
     ]);
 
     return(

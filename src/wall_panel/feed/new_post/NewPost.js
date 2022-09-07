@@ -17,15 +17,16 @@ export default function NewPost(props){
     const [showAlert, setShowAlert] = React.useState(false);
     const [alertError, setAlertError] = React.useState(1);
 
+    /*
     const [tytulError, setTytulError] = React.useState(false);
     const [tekstError, setTekstError] = React.useState(false);
     const [kategoriaError, setKategoriaError] = React.useState(false);
     const [userError, setUserError] = React.useState(false);
-
+    */
 
 
     function ValidateLength(tytul, min, max){
-        var l = tytul.length;
+        let l = tytul.length;
         return (min <= l && l < max);
     }
 
@@ -34,7 +35,7 @@ export default function NewPost(props){
     }
 
     async function ValidateKategoriaUsed(nazwa){
-        var result = true;
+        let result = true;
         await fetch(getApiUrl() + "kategorie/nazwa/" + nazwa, {
             method: "GET"
         }).then((response) => response.json()).then((data) => {
@@ -44,7 +45,7 @@ export default function NewPost(props){
     }
 
     async function ValidateAutorUsed(login) {
-        var result = true;
+        let result = true;
         await fetch(getApiUrl() + "user/login/" + login, {
             method: "GET"
         }).then((response) => response.json()).then((data) => {
@@ -55,33 +56,33 @@ export default function NewPost(props){
 
     async function SubmitButtonClicked(event){
         event.preventDefault();
-        var functionTytulError = false;
-        var functionTekstError = false;
-        var functionUserError = false;
-        var functionKategoriaError = false;
+        let functionTytulError = false;
+        let functionTekstError = false;
+        let functionUserError = false;
+        let functionKategoriaError = false;
 
         if (!ValidateLength(tytul, 1, 255)){
-            setTytulError(true);
+            //setTytulError(true);
             functionTytulError = true;
         }
 
         if(!ValidateLength(tekst, 0, 1023)){
-            setTekstError(true);
+            //setTekstError(true);
             functionTekstError =true;
         }
 
-        if(ValidateKategoria(kategoria) || !ValidateKategoriaUsed(kategoria)){
-            setKategoriaError(true);
+        if(ValidateKategoria(kategoria) || !(await ValidateKategoriaUsed(kategoria))){
+            //setKategoriaError(true);
             functionKategoriaError = true;
         }
 
-        if(!ValidateAutorUsed(user.nazwa)){
-            setUserError(true);
+        if(!(await ValidateAutorUsed(user.nazwa))){
+            //setUserError(true);
             functionUserError = true;
         }
 
         if(!functionUserError && !functionKategoriaError && !functionTytulError && !functionTekstError) {
-            if (post.id == null){
+            if (post.id === null){
                 await fetch(getApiUrl() + "posty/nowy/" + user.nazwa +
                     "/" + kategoria +
                     "/" + tytul +
@@ -89,25 +90,17 @@ export default function NewPost(props){
                     method: "POST",
                     credentials: "include"
                 }).then(response => {
-                    try {
-                        response.json().then(result => {
-                                if (response.status === 200) {
-                                    setTytul("");
-                                    setTekst("");
-                                    setKategoria("");
-                                    setAlertError(0);
+                    if (response.status === 200) {
+                        setTytul("");
+                        setTekst("");
+                        setKategoria("");
+                        setAlertError(0);
 
-                                    //console.log(result)
-                                } else {
-                                    setAlertError(1);
-                                }
-                                setShowAlert(true);
-                            }
-                        )
-                    } catch (err) {
-                        console.log(err);
+                        //console.log(result)
+                    } else {
+                        setAlertError(1);
                     }
-
+                    setShowAlert(true);
                 })
             }
             else{
@@ -119,25 +112,17 @@ export default function NewPost(props){
                     method: "PUT",
                     credentials: "include"
                 }).then(response => {
-                    try {
-                        response.json().then(result => {
-                                if (response.status === 200) {
-                                    setTytul("");
-                                    setTekst("");
-                                    setKategoria("");
-                                    setAlertError(0);
+                    if (response.status === 200) {
+                        setTytul("");
+                        setTekst("");
+                        setKategoria("");
+                        setAlertError(0);
 
-                                    //console.log(result)
-                                } else {
-                                    setAlertError(1);
-                                }
-                                setShowAlert(true);
-                            }
-                        )
-                    } catch (err) {
-                        console.log(err);
+                        //console.log(result)
+                    } else {
+                        setAlertError(1);
                     }
-
+                    setShowAlert(true);
                 })
             }
         }

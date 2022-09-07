@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import getApiUrl from "../../../api/ApiUrl";
 import FiltryStyle from "./FiltryStyle";
-import {MenuItem, Select} from "@mui/material";
+import {capitalize, MenuItem, Select} from "@mui/material";
 
 export default function CategoryOptions(props){
     const styles = FiltryStyle();
@@ -41,7 +41,7 @@ export default function CategoryOptions(props){
                     key = {props.id+kat.id}
                     value = {kat.nazwa}
                     onClick={()=>props.onChange(kat.nazwa)}
-                >{kat.nazwa}</MenuItem>
+                >{capitalize(kat.nazwa)}</MenuItem>
             )}
         </Select>
         </div>

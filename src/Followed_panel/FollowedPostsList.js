@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import getApiUrl from "../api/ApiUrl";
 import Post from "../wall_panel/feed/post/Post";
 import PostStyle from "../wall_panel/feed/post/PostStyle";
+import {Button} from "@mui/material";
 
 export default function FollowedPostsList(props){
     const styles = PostStyle();
@@ -21,17 +22,8 @@ export default function FollowedPostsList(props){
         }).then(response => {})
     }
 
-    const PostFooter = (post) =>{
-        return(
-            <div
-                className={styles.postFooter}>
-                <button post={post} onClick={()=>handleUnfollowClicked(post)}>Usuń z obserwowanych</button>
-                <button post={post} onClick={()=>handleReportClicked(post)}>Zgłoś</button>
-            </div>
-        )
-    }
 
-    window.onscroll = function(ev) {
+    window.onscroll = function() {
         if ((window.innerHeight + window.scrollY + 1) >= document.body.offsetHeight) {
             setLast(last+5);
         }
@@ -43,7 +35,7 @@ export default function FollowedPostsList(props){
             .then(response => response.json())
             .then(posty => {
                 setPosty(posty);
-                console.log(posty);
+                //console.log(posty);
             });
     },[user.id])
 
@@ -53,7 +45,6 @@ export default function FollowedPostsList(props){
                                                    user={user}
                                                    post={post}
                                                    id={postId++}
-                                                   footer={PostFooter(post)}
             />)}
         </div>
     );

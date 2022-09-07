@@ -9,7 +9,7 @@ export default makeStyles((theme) => ({
     post:{
         height: "auto",
         width: "100%",
-        backgroundColor: "rgba(255,255,255,0.8)",
+        backgroundColor: "rgb(255,255,255)",
         backdropFilter: "blur(2px)",
         WebkitBorderRadius: "10px",
         WebkitBoxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
@@ -20,7 +20,7 @@ export default makeStyles((theme) => ({
 
     postUpper:{
         display: "block",
-        backgroundColor: "rgb(0,108,255)",
+        backgroundColor: "rgba(255,255,255,0)",
 
 
         width: "100%",
@@ -28,7 +28,7 @@ export default makeStyles((theme) => ({
     },
 
     postUpperLeft:{
-        backgroundColor: "rgb(66,255,0)",
+        backgroundColor: "rgba(255,255,255,0)",
 
         display: "inline-block",
         
@@ -37,7 +37,7 @@ export default makeStyles((theme) => ({
     },
 
     postUpperRight:{
-        backgroundColor: "rgb(196,0,255)",
+        backgroundColor: "rgba(255,255,255,0)",
         display: "inline-block",
         width: "80%",
         height: "100%",
@@ -45,7 +45,7 @@ export default makeStyles((theme) => ({
 
     postHeader:{
         float: "left",
-        backgroundColor: "rgb(255,128,0)",
+        backgroundColor: "rgba(255,255,255,0)",
 
         width: "100%",
     },
@@ -53,7 +53,7 @@ export default makeStyles((theme) => ({
     postHeaderTileL:{
         display: "inline-block",
         textAlign:"left",
-        backgroundColor: "rgb(255,255,0)",
+        backgroundColor: "rgba(255,255,255,0)",
 
         width: "50%"
     },
@@ -61,7 +61,7 @@ export default makeStyles((theme) => ({
     postHeaderTileR:{
         display: "inline-block",
         textAlign:"right",
-        backgroundColor: "rgb(255,255,0)",
+        backgroundColor: "rgba(255,255,255,0)",
 
         width: "50%"
     },
@@ -69,7 +69,7 @@ export default makeStyles((theme) => ({
     postMain:{
         display: "block",
         textAlign: "justify",
-        backgroundColor: "rgb(255,255,255)",
+        backgroundColor: "rgba(255,255,255,0)",
         height:"auto",
         width: "100%",
     },
@@ -77,7 +77,7 @@ export default makeStyles((theme) => ({
     postFooter:{
         display: "block",
         textAlign: "right",
-        backgroundColor: "rgb(255,0,0)",
+        backgroundColor: "rgba(255,255,255,0)",
         width: "100%",
         height: "15%",
     },
@@ -86,7 +86,7 @@ export default makeStyles((theme) => ({
         position: "fixed",
         top: "-100vh",
         left: "-100vw",
-        background: "rgba(37,36,36,0.51)",
+        background: "rgba(255,255,255,0.51)",
         height: "200%",
         width: "200vw",
     },

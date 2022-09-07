@@ -31,6 +31,7 @@ export default function LastNameUpdateCard(props) {
                     setErrorAlert(false);
                     setShowAlert(true);
                     user.nazwisko = lastName;
+                    props.setNazwisko(lastName);
                 }
                 else{
                     setErrorAlert(true);
