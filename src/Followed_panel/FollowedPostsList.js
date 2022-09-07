@@ -45,11 +45,12 @@ export default function FollowedPostsList(props){
                 setPosty(posty);
                 console.log(posty);
             });
-    },[])
+    },[user.id])
 
     return(
         <div className={styles.postList} id={"postListContainer"}>
             {posty.slice(0,last).map(post => <Post key={post.id}
+                                                   user={user}
                                                    post={post}
                                                    id={postId++}
                                                    footer={PostFooter(post)}
