@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import NewPostStyle from "./NewPostStyle";
 import {Alert, Button} from "@mui/material";
 
@@ -10,12 +10,29 @@ export default function NewPost(props){
     const {user} = props
     const {post} = props
 
+    const defaultPost = {
+        id:null,
+        tytul:"",
+        tekst:"",
+        autor:"",
+        data:"",
+        kategoria:"",
+        obserwuje:false,
+    }
+
+
     const [tytul, setTytul] = React.useState(post.tytul);
     const [tekst, setTekst] = React.useState(post.tekst)
     const [kategoria,setKategoria] = React.useState(post.kategoria);
 
     const [showAlert, setShowAlert] = React.useState(false);
     const [alertError, setAlertError] = React.useState(1);
+
+    useEffect(()=>{
+        setTytul(post.tytul);
+        setTekst(post.tekst);
+        setKategoria(post.kategoria);
+    },[post])
 
     /*
     const [tytulError, setTytulError] = React.useState(false);
@@ -91,9 +108,7 @@ export default function NewPost(props){
                     credentials: "include"
                 }).then(response => {
                     if (response.status === 200) {
-                        setTytul("");
-                        setTekst("");
-                        setKategoria("");
+                        props.setPost(defaultPost);
                         setAlertError(0);
 
                         //console.log(result)
@@ -113,9 +128,7 @@ export default function NewPost(props){
                     credentials: "include"
                 }).then(response => {
                     if (response.status === 200) {
-                        setTytul("");
-                        setTekst("");
-                        setKategoria("");
+                        props.setPost(defaultPost);
                         setAlertError(0);
 
                         //console.log(result)
@@ -140,9 +153,54 @@ export default function NewPost(props){
         setKategoria(value);
     }
 
+
+    function renderButtons(){
+        if(post.id===null){
+            return(
+                <div className={styles.buttonDiv}>
+                    <Button className={styles.shareButton}
+                            variant="contained"
+                            type="submit"
+                        //onClick={()=>{if(post.id!==null && kategoria!==""){props.onClick();}}}
+                    >
+                        Udostępnij
+                    </Button>
+                </div>
+            );
+        }
+        else{
+            return (
+                <div className={styles.buttonDiv}>
+                    <Button className={styles.shareButton}
+                            variant="contained"
+                            type="submit"
+                        //onClick={()=>{if(post.id!==null && kategoria!==""){props.onClick();}}}
+                    >
+                        Zapisz
+                    </Button>
+                    <Button
+                        className={styles.shareButton}
+                        variant="contained"
+                        onClick={()=>props.setPost(defaultPost)}>
+                        Anuluj
+                    </Button>
+                </div>
+            );
+        }
+    }
+
     return(
         <form className={styles.newPost} onSubmit={(event)=>SubmitButtonClicked(event)}>
             <div className={styles.newPostTop}>
+                {post.id!==null && (
+                    <div className={styles.header}>
+                        Edycja postu:
+                    </div>
+                ) || (
+                    <div className={styles.header}>
+                        Nowy post:
+                    </div>
+                )}
                 <input
                     className={styles.newPostTitleInput}
                     placeholder={"Wpisz tytuł"}
@@ -181,29 +239,22 @@ export default function NewPost(props){
                         //error={kategoriaError}
                     />
                 </div>
-                <div className={styles.buttonDiv}>
-                <Button className={styles.shareButton}
-                    variant="contained"
-                    type="submit"
-                    onClick={()=>{if(post.id!==null){props.onClick();}}}>
-                    Udostępnij
-                    </Button>
-                </div>
+                {renderButtons()}
             </div>
             {showAlert &&
-                <div>
+                <div className={styles.alertContainer}>
                     {alertError===0 &&
-                        <Alert severity="success">
+                        <Alert className={styles.alert} severity="success">
                             Pomyślnie dodano nowy post. Będzie widoczny po odświeżeniu strony.
                         </Alert>
                     }
                     {alertError===1 &&
-                        <Alert severity="error">
+                        <Alert className={styles.alert} severity="error">
                             Coś poszło nie tak, spróbuj ponownie później.
                         </Alert>
                     }
                     {alertError===2 &&
-                        <Alert severity="error">
+                        <Alert className={styles.alert} severity="warning">
                             Należy wybrać kategorię.
                         </Alert>
                     }

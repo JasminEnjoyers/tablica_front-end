@@ -9,28 +9,32 @@ export default function WallPanel(props) {
     const styles = WallPanelStyle()
     const {user} = props
 
+    const [post, setPost] = React.useState({
+        id:null,
+        tytul:"",
+        tekst:"",
+        autor:"",
+        data:"",
+        kategoria:"",
+        obserwuje:false,
+    })
+
+    console.log(post);
+
     return (
         <div className={styles.wallBackground}>
             <Sidebar user={user}/>
             <div>
                 <div className={styles.newPostContainer}>
                     <NewPost
-                        post={
-                            {id:null,
-                             tytul:"",
-                             tekst:"",
-                             autor:"",
-                             ocena:null,
-                             data:"",
-                             kategoria:""}
-                        }
-                        user={user}>
-
+                        user={user}
+                        post={post}
+                        setPost={setPost}>
                     </NewPost>
                 </div>
 
                 <div className={styles.feedContainer}>
-                    <Feed user={user}></Feed>
+                    <Feed user={user} setPost={setPost}></Feed>
                 </div>
             </div>
         </div>
