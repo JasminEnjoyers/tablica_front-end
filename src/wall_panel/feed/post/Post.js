@@ -34,7 +34,9 @@ export default function Post(props){
     }
 
     function handleEditClicked(){
-        setDialogType(1);
+        props.setPost(post);
+        window.scroll(0,0);
+        //setDialogType(1);
     }
 
     function handleFollowClicked(){
@@ -84,7 +86,7 @@ export default function Post(props){
             )
         }
 
-        if (dialogType===1){
+        /*if (dialogType===1){
             return(
                     <Dialog onClose={()=>setDialogType(0)}
                         open={true}>
@@ -98,10 +100,11 @@ export default function Post(props){
                             user = {user}
                             post = {post}>
                         </NewPost>
+                        <div className={styles.break}></div>
                         <Button onClick={()=>setDialogType(0)}>Anuluj</Button>
                     </Dialog>
             )
-        }
+        }*/
     }
 
     function viewingType(){

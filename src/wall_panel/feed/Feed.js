@@ -27,15 +27,24 @@ export default function Feed(props){
 
             <div className={styles.controls}>
                 <div className={styles.filter}>
-                    <CategoryOptions id="PostListCategoryOptions" kategoria={kategoria} onChange={(event,value)=>kategoriaChanged(event,value)}/>
+                    <CategoryOptions
+                        id="PostListCategoryOptions"
+                        kategoria={kategoria}
+                        onChange={(event,value)=>kategoriaChanged(event,value)}/>
                 </div>
                 <div className={styles.filter} >
-                    <SortOptions filtr={sortujWg} onChange={event=>sortChanged(event)}/>
+                    <SortOptions
+                        filtr={sortujWg}
+                        onChange={event=>sortChanged(event)}/>
                 </div>
             </div>
 
             <div className={styles.feedSection}>
-                <PostList user={user} autor={""} kategoria={kategoria} sortujWg={sortujWg}/>
+                <PostList user={user}
+                          autor={""}
+                          kategoria={kategoria}
+                          sortujWg={sortujWg}
+                          setPost={props.setPost}/>
             </div>
         </div>
     );

@@ -62,7 +62,8 @@ export default function PostList(props){
                     <Post
                         user={user}
                         key={post.id}
-                        post={post}/>
+                        post={post}
+                        setPost={props.setPost}/>
                 )
             }
 

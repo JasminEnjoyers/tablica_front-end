@@ -93,5 +93,9 @@ export default makeStyles((theme) => ({
 
     dialog:{
 
+    },
+
+    break:{
+        height:"8vh"
     }
 }));
