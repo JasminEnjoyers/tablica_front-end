@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import SingInPanel from "../sign_in_panel/SignInPanel";
 import WallPanel from "../wall_panel/WallPanel";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, Navigate} from "react-router-dom";
 import RegisterPanel from "../register_panel/RegisterPanel";
 import UserPanel from "../user_panel/UserPanel";
 import UserPostsPanel from "../user_posts_panel/UserPostsPanel";
@@ -28,6 +28,10 @@ function App() {
                   <Routes>
                       <Route path="/" element={ <SingInPanel userSetter={setUser}/> }/>
                       <Route path="/register" element={ <RegisterPanel userSetter={setUser}/> }/>
+                      <Route path="/user" element={ <Navigate  to={"/"}/> }/>
+                      <Route path="/added" element={ <Navigate  to={"/"}/> }/>
+                      <Route path="/reported" element={ <Navigate  to={"/"}/> }/>
+                      <Route path="/followed" element={ <Navigate  to={"/"}/> }/>
                   </Routes>
               }
           </div>
