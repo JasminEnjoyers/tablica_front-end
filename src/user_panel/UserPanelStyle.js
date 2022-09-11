@@ -40,6 +40,7 @@ export default makeStyles((theme) => ({
 
     cardSpacing:{
         margin: theme.spacing(1),
+        width:"40%",
     },
     cardContentElements:{
         display:"flex",

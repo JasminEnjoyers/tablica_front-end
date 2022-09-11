@@ -59,7 +59,7 @@ export default function LoginUpdateCard(props) {
                 <form onSubmit={(event) => updateLogin(event)}>
                     <TextField
                         id="login"
-                        label="Login"
+                        placeholder={"Login"}
                         variant="outlined"
                         error={error}
                         value={login}

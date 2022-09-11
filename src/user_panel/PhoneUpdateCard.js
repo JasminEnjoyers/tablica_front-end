@@ -61,7 +61,7 @@ export default function PhoneUpdateCard(props) {
                 <form onSubmit={(event) => updatePhone(event)}>
                     <TextField
                         id="phone"
-                        label="Nowy Telefon"
+                        placeholder={"Nowy Telefon"}
                         variant="outlined"
                         error={error}
                         value={phone}

@@ -49,6 +49,10 @@ export default function Sidebar(props) {
                         <Button className={styles.selectButton} component={Link} to="/reported" variant={"contained"}>Zgłoszone posty</Button>
                     </div>
                 }
+                <div className={styles.btnLogoutContainer}>
+                    <Button className={styles.selectButton} variant={"contained"} onClick={()=>props.userSetter(null)}>Wyloguj</Button>
+                </div>
+
             </Drawer>
         </div>
     );

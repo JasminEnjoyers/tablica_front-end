@@ -33,4 +33,15 @@ export default makeStyles((theme) => ({
         width: 125,
         height: 125,
     },
+
+    feed: {
+        width: "40vw",
+        minHeight: "10vh",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        //backgroundColor: "rgb(161,172,173)",
+        backdropFilter: "blur(2px)",
+        WebkitBorderRadius: "10px",
+    },
 }));

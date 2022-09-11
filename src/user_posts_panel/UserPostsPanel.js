@@ -22,7 +22,7 @@ export default function UserPostsPanel(props) {
 
     return (
         <div className={styles.wallBackground}>
-            <Sidebar user={user}/>
+            <Sidebar user={user} userSetter={props.userSetter}/>
             <div>
             <div className={styles.newPostContainer}>
                 <NewPost

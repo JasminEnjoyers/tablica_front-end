@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
     newPost:{
-        height: "250px",
+        minHeight: "40vh",
         width: "100%",
         backgroundColor: "rgba(255,255,255,0.8)",
         backdropFilter: "blur(2px)",
@@ -31,7 +31,7 @@ export default makeStyles((theme) => ({
         alignContent:"center",
         border: "none",
         width: "90%",
-        height:"70%",
+        minHeight:"15vh",
         background:"none",
     },
 
@@ -42,7 +42,7 @@ export default makeStyles((theme) => ({
         alignContent:"center",
         border: "none",
         width: "100%",
-        height:"70%",
+        minHeight:"30vh",
         background:"none",
     },
 
@@ -52,16 +52,18 @@ export default makeStyles((theme) => ({
         alignContent:"center",
         border: "none",
         width: "100%",
-        height:"30%",
+        height:"10vh",
         background:"none",
     },
 
     buttonDiv:{
         margin:"15px",
+        display:"inline-block",
     },
 
     shareButton: {
         height: "100%",
+        display:"inline-block",
         backgroundColor: "green",
         border: "none",
         WebkitBorderRadius: "4px",
@@ -81,10 +83,14 @@ export default makeStyles((theme) => ({
     },
 
     alertContainer:{
-
+        display:"flex",
+        width:"100%",
+        height:"10vh",
     },
 
     alert:{
+        display:"flex",
+        width:"100%",
+        height:"8vh",
     },
-
 }));

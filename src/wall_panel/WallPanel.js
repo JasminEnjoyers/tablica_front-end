@@ -19,11 +19,11 @@ export default function WallPanel(props) {
         obserwuje:false,
     })
 
-    console.log(post);
+    //console.log(post);
 
     return (
         <div className={styles.wallBackground}>
-            <Sidebar user={user}/>
+            <Sidebar user={user} userSetter={props.userSetter}/>
             <div>
                 <div className={styles.newPostContainer}>
                     <NewPost

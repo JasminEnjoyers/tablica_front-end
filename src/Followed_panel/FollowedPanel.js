@@ -13,7 +13,9 @@ export default function FollowedPanel(props) {
             <Sidebar user={user}/>
             <div>
                 <div className={styles.feedContainer}>
-                    <FollowedPostsList user={user} autor={""}/>
+                    <div className={styles.feed}>
+                        <FollowedPostsList user={user} userSetter={props.userSetter} autor={""}/>
+                    </div>
                 </div>
             </div>
         </div>

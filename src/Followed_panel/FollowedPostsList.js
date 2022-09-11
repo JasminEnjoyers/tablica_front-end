@@ -2,7 +2,6 @@ import React, {useEffect} from "react";
 import getApiUrl from "../api/ApiUrl";
 import Post from "../wall_panel/feed/post/Post";
 import PostStyle from "../wall_panel/feed/post/PostStyle";
-import {Button} from "@mui/material";
 
 export default function FollowedPostsList(props){
     const styles = PostStyle();

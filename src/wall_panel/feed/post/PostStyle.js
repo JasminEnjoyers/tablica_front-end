@@ -72,6 +72,7 @@ export default makeStyles((theme) => ({
         backgroundColor: "rgba(255,255,255,0)",
         width: "50%",
         fontSize:20,
+        wordWrap: "break-word",
     },
 
     kategoria:{
@@ -89,6 +90,7 @@ export default makeStyles((theme) => ({
         backgroundColor: "rgba(255,255,255,0)",
         height:"auto",
         width: "100%",
+        wordWrap: "break-word",
     },
 
     postFooter:{

@@ -60,6 +60,7 @@ export default function PostList(props){
                 .slice(0,last)
                 .map(post =>
                     <Post
+                        id={post.autor+post.id}
                         user={user}
                         key={post.id}
                         post={post}

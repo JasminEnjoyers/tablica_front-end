@@ -82,7 +82,7 @@ export default function PasswordUpdateCard(props) {
                 <form onSubmit={(event) => updatePassword(event)}>
                     <TextField
                         id="hasło"
-                        label="obecne hasło"
+                        placeholder={"obecne hasło"}
                         variant="outlined"
                         error={error}
                         value={password}
@@ -104,7 +104,7 @@ export default function PasswordUpdateCard(props) {
                     />
                     <TextField
                         id="noweHasło"
-                        label="nowe hasło"
+                        placeholder={"nowe hasło"}
                         variant="outlined"
                         error={newPasswordError}
                         value={newPassword}
@@ -126,7 +126,7 @@ export default function PasswordUpdateCard(props) {
                     />
                     <TextField
                         id="noweHasło2"
-                        label="powtórz nowe hasło"
+                        placeholder={"powtórz nowe hasło"}
                         variant="outlined"
                         error={newPasswordError}
                         value={newPassword2}

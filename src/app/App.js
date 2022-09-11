@@ -16,12 +16,12 @@ function App() {
           <div className="App">
               {user != null &&
                   <Routes>
-                      <Route path="/" element={ <WallPanel user={user}/> }/>
-                      <Route path="/register" element={ <WallPanel user={user}/> }/>
-                      <Route path="/user" element={ <UserPanel user={user}/> }/>
-                      <Route path="/added" element={ <UserPostsPanel user={user}/> }/>
-                      <Route path="/reported" element={ <ReportedPostsPanel user={user}/> }/>
-                      <Route path="/followed" element={ <FollowedPanel user={user}/> }/>
+                      <Route path="/" element={ <WallPanel user={user} userSetter={setUser}/> }/>
+                      <Route path="/register" element={ <WallPanel user={user} userSetter={setUser}/> }/>
+                      <Route path="/user" element={ <UserPanel user={user} userSetter={setUser}/> }/>
+                      <Route path="/added" element={ <UserPostsPanel user={user} userSetter={setUser}/> }/>
+                      <Route path="/reported" element={ <ReportedPostsPanel user={user} userSetter={setUser}/> }/>
+                      <Route path="/followed" element={ <FollowedPanel user={user} userSetter={setUser}/> }/>
                   </Routes>
               }
               {user == null &&

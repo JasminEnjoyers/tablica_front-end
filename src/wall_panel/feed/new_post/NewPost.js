@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import NewPostStyle from "./NewPostStyle";
-import {Alert, Button} from "@mui/material";
+import {Alert, Button, Input} from "@mui/material";
 
 import CategoryOptions from "../filter/CategoryOptions";
 import getApiUrl from "../../../api/ApiUrl";
@@ -170,7 +170,8 @@ export default function NewPost(props){
         }
         else{
             return (
-                <div className={styles.buttonDiv}>
+                <div>
+                    <div className={styles.buttonDiv}>
                     <Button className={styles.shareButton}
                             variant="contained"
                             type="submit"
@@ -178,12 +179,15 @@ export default function NewPost(props){
                     >
                         Zapisz
                     </Button>
+                    </div>
+                    <div className={styles.buttonDiv}>
                     <Button
                         className={styles.shareButton}
                         variant="contained"
                         onClick={()=>props.setPost(defaultPost)}>
                         Anuluj
                     </Button>
+                    </div>
                 </div>
             );
         }
@@ -192,42 +196,43 @@ export default function NewPost(props){
     return(
         <form className={styles.newPost} onSubmit={(event)=>SubmitButtonClicked(event)}>
             <div className={styles.newPostTop}>
-                {post.id!==null && (
+                {(post.id!==null && (
                     <div className={styles.header}>
                         Edycja postu:
                     </div>
-                ) || (
+                )) || ((
                     <div className={styles.header}>
                         Nowy post:
                     </div>
-                )}
-                <input
+                ))}
+                <Input
                     className={styles.newPostTitleInput}
                     placeholder={"Wpisz tytuł"}
                     required
+                    text
+                    multiline
                     value={tytul}
                     onChange={(event)=>setTytul(event.target.value)}
-                    /*error={tytulError}
+
                     inputProps={{
                         classes:{
                             maxLength: 254,
                         }
                     }}
-                    *///value={post}
                 />
-                <input
+                <Input
                     className={styles.newPostInput}
                     placeholder={"podziel się czymś"}
                     required
                     value={tekst}
                     onChange={(event)=>setTekst(event.target.value)}
-                    /*error={tekstError}
+                    multiline
+
                     inputProps={{
                         classes:{
                             maxLength: 1022,
                         }
                     }}
-                    *///value={post}
                 />
             </div>
             <div className={styles.newPostBottom}>

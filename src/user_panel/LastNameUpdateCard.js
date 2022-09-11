@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Button, Card, CardContent, Drawer, Menu, TextField} from "@mui/material";
+import {Alert, Button, Card, CardContent, TextField} from "@mui/material";
 import getApiUrl from "../api/ApiUrl";
 import UserPanelStyle from "./UserPanelStyle";
 
@@ -24,7 +24,7 @@ export default function LastNameUpdateCard(props) {
             setError(true);
         }else{
             setError(false);
-            fetch(getApiUrl() + "user/lastName/" + "?userId="+user.id+"&newLastName="+lastName,{
+            fetch(getApiUrl() + "user/lastName/?userId="+user.id+"&newLastName="+lastName,{
                 method: "PUT"
             }).then(response => {
                 if(response.status === 200){
@@ -49,7 +49,7 @@ export default function LastNameUpdateCard(props) {
                 <form onSubmit={(event) => updateEmail(event)}>
                     <TextField
                         id="lastName"
-                        label="Nowe Nazwisko"
+                        placeholder={"Nowe Nazwisko"}
                         variant="outlined"
                         error={error}
                         value={lastName}

@@ -29,7 +29,7 @@ export default makeStyles((theme) => ({
     },
 
     feed: {
-        width: 500,
+        width: "40vw",
         minHeight: "10vh",
         flexDirection: "column",
         alignItems: "center",

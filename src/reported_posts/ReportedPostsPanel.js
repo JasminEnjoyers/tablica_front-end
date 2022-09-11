@@ -10,10 +10,12 @@ export default function ReportedPostsPanel(props) {
 
     return (
         <div className={styles.wallBackground}>
-            <Sidebar user={user}/>
+            <Sidebar user={user} userSetter={props.userSetter}/>
             <div>
                 <div className={styles.feedContainer}>
-                    <ReportedPostsList />
+                    <div className={styles.feed}>
+                        <ReportedPostsList/>
+                    </div>
                 </div>
             </div>
         </div>

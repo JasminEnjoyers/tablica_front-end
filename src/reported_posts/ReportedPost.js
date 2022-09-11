@@ -1,7 +1,7 @@
 import React from "react";
 import PostStyle from "../wall_panel/feed/post/PostStyle";
 import getApiUrl from "../api/ApiUrl";
-import {Button, Dialog} from "@mui/material";
+import {Button, Dialog, Divider} from "@mui/material";
 
 
 export default function ReportedPost(props){
@@ -71,14 +71,18 @@ export default function ReportedPost(props){
                 </div>
 
                 <div className={styles.postHeader}>
-                    <div className={styles.postHeaderTileL}>{autor}</div>
-                    <div className={styles.postHeaderTileR}>{data}</div>
+                    <div className={styles.postHeaderTileL}>Autor: {autor}</div>
+                    <div className={styles.postHeaderTileR}>Dodano: {data}</div>
                 </div>
                 <div className={styles.postHeader}>
-                    <div className={styles.postHeaderTileL}>{tytul}</div>
-                    <div className={styles.postHeaderTileR}>{kategoria}</div>
+                    <div className={styles.tytul}>{tytul}</div>
+                    <div className={styles.kategoria}>{kategoria}</div>
+                    <Divider className={styles.divider}></Divider>
                 </div>
-                <div className={styles.postMain}>{tekst}</div>
+                <div
+                    className={styles.postMain}>
+                    {tekst}
+                </div>
             </div>
             <div className={styles.postFooter}>
                 <Button onClick={()=>setDialogType(1)}>Usuń post</Button>

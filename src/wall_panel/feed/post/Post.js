@@ -2,7 +2,6 @@ import React from "react";
 import PostStyle from "./PostStyle";
 import getApiUrl from "../../../api/ApiUrl";
 import {Button, Dialog, Divider} from "@mui/material";
-import NewPost from "../new_post/NewPost";
 
 
 export default function Post(props){
@@ -30,6 +29,7 @@ export default function Post(props){
             method: "DELETE"
         }).then(response => {
         })
+        document.getElementById(props.id).remove();
         setDialogType(0);
     }
 
@@ -142,19 +142,34 @@ export default function Post(props){
     }
 
     return (
-        <div className={styles.post}>
+        <div className={styles.post} id={props.id}>
             <div className={styles.postTop}>
                 <div className={styles.postHeader}>
-                    <div className={styles.postHeaderTileL}>Autor: {autor}</div>
-                    <div className={styles.postHeaderTileR}>Dodano: {data}</div>
+                    <div
+                        className={styles.postHeaderTileL}>
+                        Autor: {autor}
+                    </div>
+                    <div
+                        className={styles.postHeaderTileR}>
+                        Dodano: {data}
+                    </div>
 
                 </div>
                 <div className={styles.postHeader}>
-                    <div className={styles.tytul}>{tytul}</div>
-                    <div className={styles.kategoria}>{kategoria}</div>
+                    <div
+                        className={styles.tytul}>
+                        {tytul}
+                    </div>
+                    <div
+                        className={styles.kategoria}>
+                        {kategoria}
+                    </div>
                     <Divider className={styles.divider}></Divider>
                 </div>
-                <div className={styles.postMain}>{tekst}</div>
+                <div
+                    className={styles.postMain}>
+                    {tekst}
+                </div>
             </div>
             {PostFooter()}
             {showDialog()}

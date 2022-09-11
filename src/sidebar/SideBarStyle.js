@@ -33,4 +33,11 @@ export default makeStyles((theme) => ({
         marginTop:"20px",
     },
 
+    btnLogoutContainer:{
+        marginTop:"60px",
+        marginBottom:"10px",
+        padding:4,
+
+    },
+
 }));
