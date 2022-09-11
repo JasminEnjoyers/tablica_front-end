@@ -63,7 +63,24 @@ export default makeStyles((theme) => ({
         textAlign:"right",
         backgroundColor: "rgba(255,255,255,0)",
 
-        width: "50%"
+        width: "50%",
+    },
+
+    tytul:{
+        display: "inline-block",
+        textAlign:"left",
+        backgroundColor: "rgba(255,255,255,0)",
+        width: "50%",
+        fontSize:20,
+    },
+
+    kategoria:{
+        display: "inline-block",
+        textAlign:"right",
+        backgroundColor: "rgba(255,255,255,0)",
+        width: "50%",
+        fontSize:20,
+
     },
 
     postMain:{
@@ -89,6 +106,10 @@ export default makeStyles((theme) => ({
         background: "rgba(255,255,255,0.51)",
         height: "200%",
         width: "200vw",
+    },
+
+    divider:{
+        padding:5,
     },
 
     dialog:{

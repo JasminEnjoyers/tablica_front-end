@@ -1,7 +1,7 @@
 import React from "react";
 import PostStyle from "./PostStyle";
 import getApiUrl from "../../../api/ApiUrl";
-import {Button, Dialog} from "@mui/material";
+import {Button, Dialog, Divider} from "@mui/material";
 import NewPost from "../new_post/NewPost";
 
 
@@ -150,8 +150,9 @@ export default function Post(props){
 
                 </div>
                 <div className={styles.postHeader}>
-                    <div className={styles.postHeaderTileL}>{tytul}</div>
-                    <div className={styles.postHeaderTileR}>{kategoria}</div>
+                    <div className={styles.tytul}>{tytul}</div>
+                    <div className={styles.kategoria}>{kategoria}</div>
+                    <Divider className={styles.divider}></Divider>
                 </div>
                 <div className={styles.postMain}>{tekst}</div>
             </div>

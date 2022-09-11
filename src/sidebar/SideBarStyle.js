@@ -7,6 +7,7 @@ export default makeStyles((theme) => ({
         position:"fixed",
         top:0,
         left:0,
+
     },
 
     sidePanel:{
@@ -18,16 +19,18 @@ export default makeStyles((theme) => ({
         marginTop:"10px",
         marginBottom:"10px",
         padding:4
+
     },
 
     selectButton:{
-
-        width:"60px",
+        width:"98%",
+        justifyContent: "flex-center",
+        textAlign:"center",
     },
 
     menuButton:{
-        marginLeft:"10px",
-        marginTop:"10px",
+        marginLeft:"20px",
+        marginTop:"20px",
     },
 
 }));
