@@ -23,6 +23,9 @@ export default function Sidebar(props) {
                 {/*<MenuIcon></MenuIcon>*/}
             </IconButton>
             <Drawer
+                PaperProps={{
+                    sx: { width: "150px" },
+                }}
                 className={styles.sidePanel}
                 open={menuIsOpen}
                 onClose = {menuButtonClick}

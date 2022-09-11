@@ -2,11 +2,24 @@ import {makeStyles} from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
     RegisterPanelBackground:{
+        // display: "flex",
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        // backgroundImage: "url(/img/backdrop.png)",
+        // backgroundSize: "cover"
+
         display: "flex",
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundImage: "url(/img/backdrop.png)",
-        backgroundSize: "cover"
+        backgroundPosition:"center",
+        backgroundAttachment:"fixed",
+        minHeight:"100vh",
+        top:0,
+        left:0,
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "rgba(98, 87, 255, 1)",
+        backgroundImage: "linear-gradient(290deg, rgba(98, 87, 255, 1) 10%, rgba(160, 121, 206, 1) 90%)",
     },
 
     positioningBox: {
