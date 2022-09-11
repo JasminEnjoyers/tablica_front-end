@@ -10,7 +10,7 @@ export default function FollowedPanel(props) {
 
     return (
         <div className={styles.wallBackground}>
-            <Sidebar user={user}/>
+            <Sidebar user={user} userSetter={props.userSetter}/>
             <div>
                 <div className={styles.feedContainer}>
                     <div className={styles.feed}>
